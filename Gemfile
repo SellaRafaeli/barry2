@@ -33,4 +33,6 @@ group :development, :test do
   gem 'sinatra-reloader'
   gem 'faker' 
   gem 'nokogiri'
+  gem 'sass'
+  gem 'filewatcher'
 end

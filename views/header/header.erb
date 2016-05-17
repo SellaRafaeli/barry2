@@ -27,17 +27,23 @@ x=1
             <ul class="nav navbar-nav navbar-right header-links">
                 
                 <% if cu %>
-                <li><a href="/me"><%= cu['email']%></a></li>
-                <li><a href="/logout">Log Out</a></li>
+                    <li><a href="/me"><%= cu['email']%></a></li>                
                 <% else %>
-                <li> <a class="nav-link" href="/register">Register</a></li>
-                <li> <a class="nav-link" href="/login">Log In</a></li>
+                    <li> <a class="nav-link" href="/register">Register</a></li>
+                    <li> <a class="nav-link" href="/login">Log In</a></li>
                 <% end %>
                 
                 <% if is_admin %>
-                <li> <a class="admin" href="/admin">Admin</a> </li> 
+                    <li> <a class="admin" href="/admin">Admin</a> </li> 
                 <% end %>                                     
+                
+                <li><a href="/search">Search</a></li>
                 <li><a href="/about">About</a></li>
+                
+
+                <% if cu %>
+                    <li><a href="/logout">Log Out</a></li>
+                <% end %>
                 <!-- <li><a href="/about">About</a></li> -->
             </ul>
         </div --><!--/.navbar-collapse -->
