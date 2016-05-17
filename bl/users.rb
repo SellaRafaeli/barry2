@@ -4,7 +4,8 @@ SETTABLE_USER_FIELDS = ['email','name']
 
 get '/u/:username' do
   u = params[:username]
-  user = $users.get(u) || $users.get(email: u)
+  user = $users.get(u) || $users.get(email: params[:username])
+  full_page_card :"users/user_page", locals: {user: user}
 end
 
 get '/me' do

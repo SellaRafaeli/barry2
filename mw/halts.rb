@@ -18,6 +18,20 @@ def require_fields(fields)
   Array(fields).each do |field| halt_missing_param(field) unless params[field].present? end 
 end
 
+def halt_home(msg = nil)
+  msg ||= 'Please sign in first.'
+  flash.msg='Sign in First' 
+  redirect '/' 
+end
+
+def require_sign_in(msg = nil)
+  halt_home unless cu
+end
+
+def require_obj(obj)
+  halt_home('No such item.') unless obj
+end
+
 get '/halts' do
   {msg: 'halt!'}
 end

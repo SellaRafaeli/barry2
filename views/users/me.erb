@@ -4,7 +4,8 @@
   fields = SETTABLE_USER_FIELDS
 %>
 
-<div class='col-md-6'>  
+<div class='col-md-6'>
+  <h3> My details </h3>
   <form action='/update_me' method='post'>
     <% SETTABLE_USER_FIELDS.each do |field| %>
       <div class="form-group">
@@ -12,17 +13,20 @@
         <input type="text" class="form-control" name=<%=field%> id="me-form-<%=field%>" placeholder="<%=field%>" value=<%=cu[field]%>>
       </div>
     <% end %>
-    
-    <!-- <div class="form-group">
-      <label for="exampleInputFile">File input</label>
-      <input type="file" id="exampleInputFile">
-      <p class="help-block">Example block-level help text here.</p>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox"> Check me out
-      </label>
-    </div> -->
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
+
+  <hr/>
+
+  <h3> Add Item </h3>
+  <form action='/add_item' method='post'>
+    <% SETTABLE_ITEM_FIELDS.each do |field| %>
+      <div class="form-group">
+        <label for="item-form-<%=field%>"><%=field.capitalize%></label>
+        <input type="text" class="form-control" item=<%=field%> id="item-form-<%=field%>" placeholder="<%=field%>" name=<%=field%> value=<%=cu[field]%>>
+      </div>
+    <% end %>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+
 </div>

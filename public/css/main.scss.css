@@ -68,3 +68,6 @@
 @keyframes yellow-fade {
   5% {
     background-color: #ff8; } }
+.search_page .search_result {
+  border: 1px solid red;
+  padding: 10px; }
