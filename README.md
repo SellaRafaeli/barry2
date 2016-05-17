@@ -8,3 +8,11 @@ $ filewatcher '**/*.scss' 'scss $FILENAME > $FILENAME.css; echo "created"-$FILEN
 
 # Exclude searches:
 -public/css/font*, -public/css/bootstrap_3.3.4.min.css, -public/css/lib*, -public/js/lib*, -*/node_modules/*, -*/js_dist/*, -*/.sass-cache*
+
+## Features
+- homepage
+- login, logout, forgot password
+- search users
+- user page
+- create item for user
+- search items
