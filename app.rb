@@ -33,5 +33,7 @@ get '/ping' do
 end
 
 get '/' do
-  render_home_page  
+  #to_card(:"pages/homepage", layout: :layout)
+  full_page_card(:"pages/homepage", layout: :layout)
+  #to_page(:"pages/homepage", layout: :layout)
 end

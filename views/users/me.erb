@@ -1,0 +1,28 @@
+<h1> Me </h1>
+
+<%
+  fields = SETTABLE_USER_FIELDS
+%>
+
+<div class='col-md-6'>  
+  <form action='/update_me' method='post'>
+    <% SETTABLE_USER_FIELDS.each do |field| %>
+      <div class="form-group">
+        <label for="me-form-<%=field%>"><%=field.capitalize%></label>
+        <input type="text" class="form-control" name=<%=field%> id="me-form-<%=field%>" placeholder="<%=field%>" value=<%=cu[field]%>>
+      </div>
+    <% end %>
+    
+    <!-- <div class="form-group">
+      <label for="exampleInputFile">File input</label>
+      <input type="file" id="exampleInputFile">
+      <p class="help-block">Example block-level help text here.</p>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"> Check me out
+      </label>
+    </div> -->
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
+</div>

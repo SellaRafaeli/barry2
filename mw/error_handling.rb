@@ -18,7 +18,7 @@ error do
   e = env['sinatra.error']    
   log_e(e)
   data = {msg: "an error occurred", e: e.to_s, backtrace: e.backtrace.to_a.slice(0,4).to_s}
-  if request_expects_json?
+  if request_expects_json? || !$prod
     data 
   else 
     full_page_card(:"other/500", locals: {data: data})
