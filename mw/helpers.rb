@@ -14,6 +14,10 @@ def user_link(u)
 rescue '/oops'
 end
 
+def udn(u) #user display name
+  u['name'] || u['username'] || 'Somebody'
+end
+
 def item_link(i)
   $root_url+'/items/'+i['slug'].to_s 
 end

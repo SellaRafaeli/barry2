@@ -1,0 +1,6 @@
+<form action='/send_msg' method='post'>
+    <label> Send a message</label>
+    <input type='hidden' name='user_id' value='<%=user["_id"]%>'>
+    <input name='text' placeholder='Say something'/>
+    <button class='btn btn-default'>Submit</button>
+</form>

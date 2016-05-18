@@ -1,0 +1,17 @@
+<%
+  I_sent  = {sender_id: cuid, receiver_id: user['_id']}
+  he_sent = {sender_id: user['_id'], receiver_id: cuid}
+  msgs       = $msgs.all("$or": [I_sent, he_sent]).to_a
+  msgs       = msgs.sort_by {|c| c['created_at'] }.reverse
+%>
+
+<h1> Single Convo with: <%= udn(user) %></h1>
+<%= erb :"pages/convos/send_msg_form", locals: {user: user} %>
+<section style='zheight: 400px; overflow: scroll; border: 2px solid #1b809e;'>
+<% msgs.each do |msg| %>
+  <div class='well'>
+    <%= erb :"pages/convos/single_message", locals: {msg: msg} %>
+  </div>
+<% end %>
+</section>
+

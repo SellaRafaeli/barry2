@@ -8,8 +8,10 @@ get "/admin/manage/:coll" do
   erb :"admin/items", default_layout
 end 
 
+$sella = $users.get(email: 'sella.rafaeli@gmail.com')
+$sella_id = $sella['_id']
 def is_admin(user = cu)
-  user['email'] == 'sella.rafaeli@gmail.com' rescue false
+  user == $sella rescue false
 end
 
 before '/admin*' do
