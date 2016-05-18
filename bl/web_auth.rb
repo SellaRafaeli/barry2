@@ -1,8 +1,3 @@
-def create_user(data)
-  data[:token] = SecureRandom.uuid
-  $users.add(data)
-end
-
 get '/login' do
   full_page_card :"web_auth/login", layout: :layout
 end
@@ -16,11 +11,11 @@ post '/login' do
       log_event('logged in')
       redirect '/' 
     else
-      flash.message = 'Wrong password.'
+      flash.msg = 'Wrong password.'
       redirect back
     end
   else
-     flash.message = 'No such email.' 
+     flash.msg = 'No such email.' 
      redirect back
   end  
 end
@@ -30,15 +25,15 @@ get '/register' do
 end
 
 post '/register' do
-  email, password = params[:email], params[:password]
+  name, email, password = params[:name], params[:email], params[:password]
   if $users.exists?(email: email)
-    flash.message = 'Email already taken.'
+    flash.msg = 'Email already taken.'
     redirect back
   else 
-    user = create_user(email: email, hashed_pass: BCrypt::Password.create(password))
+    user = create_user(name: name, email: email, hashed_pass: BCrypt::Password.create(password))
     session[:user_id] = user[:_id]     
-    log_event('registered')
-    redirect '/' 
+    log_event('registered')    
+    redirect '/me'
   end
 end
 
@@ -49,7 +44,7 @@ end
 post '/forgot_password' do
   user_exists = params[:email] && $users.exists?(email: params[:email])
   msg = user_exists ? 'Check your email for a sign-in link. (Not yet implemented).' : 'No such user exists.'
-  flash.message = msg  
+  flash.msg = msg  
   redirect back
 end
 

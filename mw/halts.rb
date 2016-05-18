@@ -24,6 +24,11 @@ def halt_home(msg = nil)
   redirect '/' 
 end
 
+def halt_back(msg = 'Sorry!')
+  flash.msg = msg if msg
+  redirect back
+end
+
 def require_sign_in(msg = nil)
   halt_home unless cu
 end

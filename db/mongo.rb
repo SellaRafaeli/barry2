@@ -52,8 +52,8 @@ end
 
 def get_unique_slug(coll, field, val, crit = {})
     # gets a unique slug based on 'val' for field 'field'.
-    # $users.get_unique_slug('username','Sella Rafaeli') => 'sella-rafaeli' or 'sella-rafaeli-2'
-    slug  = val.to_slug.normalize.to_s.slice(0,200)
+    # get_unique_slug($users,'username','Sella Rafaeli') => 'sella-rafaeli' or 'sella-rafaeli-2'
+    slug  = to_slug(val)
     !coll.exists?(crit.merge!({field.to_s => slug}))       ? slug      :
     !coll.exists?(crit.merge!({field.to_s => slug+"-1"}))  ? slug+"-1" :    
     !coll.exists?(crit.merge!({field.to_s => slug+"-2"}))  ? slug+"-2" :    

@@ -10,7 +10,7 @@
     <% SETTABLE_USER_FIELDS.each do |field| %>
       <div class="form-group">
         <label for="me-form-<%=field%>"><%=field.capitalize%></label>
-        <input type="text" class="form-control" name=<%=field%> id="me-form-<%=field%>" placeholder="<%=field%>" value=<%=cu[field]%>>
+        <input type="text" class="form-control" name=<%=field%> id="me-form-<%=field%>" placeholder="<%=field%>" value='<%=cu[field]%>'>
       </div>
     <% end %>
     <button type="submit" class="btn btn-default">Submit</button>

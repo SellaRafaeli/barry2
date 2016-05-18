@@ -1,13 +1,13 @@
 <%
   q = params[:q].to_s
-  results = $users.search_anywhere(q) + $items.search_anywhere(q)
+  results = get_search_results(q)
 %>
 
 <section>
   <div> search results </div>
-  <% results.each do |res| %>
-    <div class='search_result'> 
-      <%= res.to_json %>
+  <% results.each do |item| %>
+    <div> 
+      <%= erb :"pages/search/search_item", locals: {item: item} %>
     </div>
   <% end %>
 </section>

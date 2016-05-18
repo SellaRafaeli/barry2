@@ -1,0 +1,11 @@
+Document Access Layer.txt
+=========================
+
+Users
+ - email
+ - username
+
+Items 
+ - title
+ - desc
+ - slug

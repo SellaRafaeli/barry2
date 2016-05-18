@@ -24,10 +24,16 @@ x=1
             <a class="navbar-brand" href="/" style='color: black'><%= $app_name.capitalize %></a>
         </div> 
         <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input type="text" id="header-search" class="form-control" placeholder="Search">
+                </div>
+            </form>
+            
             <ul class="nav navbar-nav navbar-right header-links">
                 
                 <% if cu %>
-                    <li><a href="/me"><%= cu['email']%></a></li>                
+                    <li><a href="/me"><%= cu['username']%></a></li>                
                 <% else %>
                     <li> <a class="nav-link" href="/register">Register</a></li>
                     <li> <a class="nav-link" href="/login">Log In</a></li>
