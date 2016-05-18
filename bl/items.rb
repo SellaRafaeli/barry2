@@ -12,9 +12,23 @@ post '/add_item' do
 end
 
 get '/edit_item' do
-  halt_home('Cannot do that.') unless (item = $items.get(params[:item_id])) && item['user_id'] == cuid
-bp
+  item = $items.get(params[:item_id])
+  halt_back('Cannot do that.') unless item && item['user_id'] == cuid
+
   full_page_card :"items/edit_item_page", locals: {item: item}, layout: :layout
+end
+
+post '/edit_item' do 
+  item = $items.get(params[:item_id])
+  bp
+  halt_back('Cannot do that.') unless item && item['user_id'] == cuid
+
+  data = params.just(SETTABLE_ITEM_FIELDS)
+  data[:title]   ||= 'item'
+  
+  $items.update_id(item['_id'],data)
+  flash.msg = 'Updated item.'
+  redirect back
 end
 
 get '/items/:slug' do

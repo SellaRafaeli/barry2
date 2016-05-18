@@ -20,7 +20,7 @@ end
 
 def halt_home(msg = nil)
   msg ||= 'Please sign in first.'
-  flash.msg='Sign in First' 
+  flash.msg = msg
   redirect '/' 
 end
 
