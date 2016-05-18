@@ -2,7 +2,7 @@
   convos     = $msgs.all("$or": [{sender_id: cuid},{receiver_id: cuid}]).to_a
   convos     = convos.sort_by {|c| c['created_at'] }.reverse
   convos     = convos.uniq {|msg| msg['sender_id']+'-'+msg['receiver_id'] }
-  
+
   msgs_with_user = convos.map {|c| user_id = ([c['sender_id']] + [c['receiver_id']] - [cuid])[0]; {user: $users.get(user_id), text: c['text'] } }
 %>
 
@@ -10,6 +10,7 @@
 
 <section class='col-md-6'>
 <% msgs_with_user.each do |msg| %>  
+<% next unless msg[:user] %>
   <a class='btn btn-default btn-block' style='text-align: left' href='/inbox/<%=msg[:user][:username]%>'>
     <h4><%=msg[:user]['name']%></h4>
     <div><%=msg[:text] %></div>
