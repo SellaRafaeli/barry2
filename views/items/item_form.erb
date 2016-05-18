@@ -1,0 +1,14 @@
+<%
+  item = item || {}
+%>
+
+<h3> <%= title %> </h3>
+  <form action=<%= route %> method='post'>
+    <% SETTABLE_ITEM_FIELDS.each do |field| %>
+      <div class="form-group">
+        <label for="item-form-<%=field%>"><%=field.capitalize%></label>
+        <input type="text" class="form-control" item=<%=field%> id="item-form-<%=field%>" placeholder="<%=field%>" name=<%=field%> value=<%=item[field]%>>
+      </div>
+    <% end %>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>

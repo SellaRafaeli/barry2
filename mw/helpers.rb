@@ -19,7 +19,7 @@ def item_link(i)
 end
 
 def to_username(s)
-  s.sub('.','-').sub(' ','-').gsub(/[^a-zA-Z0-9-_]/, '')
+  s.gsub('.','-').gsub(' ','-').gsub(/[^a-zA-Z0-9-_]/, '')
 end
 
 def to_slug(s)

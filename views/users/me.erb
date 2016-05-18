@@ -18,15 +18,11 @@
 
   <hr/>
 
-  <h3> Add Item </h3>
-  <form action='/add_item' method='post'>
-    <% SETTABLE_ITEM_FIELDS.each do |field| %>
-      <div class="form-group">
-        <label for="item-form-<%=field%>"><%=field.capitalize%></label>
-        <input type="text" class="form-control" item=<%=field%> id="item-form-<%=field%>" placeholder="<%=field%>" name=<%=field%> value=<%=cu[field]%>>
-      </div>
-    <% end %>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
+  <h3> My Items </h3>  
+  <% items = $items.all(user_id: cuid) %>
+  <% items.each do |item| %>
+    <%= erb :"items/single_item", locals: {item: item} %>
+  <% end %>
 
+  <%= erb :"items/item_form", locals: {route: '/add_item', title: 'Add Item'} %>
 </div>

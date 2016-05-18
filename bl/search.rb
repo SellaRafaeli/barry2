@@ -4,9 +4,9 @@ def get_search_results(q)
   results = users + items
 end
 
-get '/search' do
-  full_page_card(:"pages/search/search", layout: :layout)
-end
+# get '/search' do
+#   full_page_card(:"pages/search/search", layout: :layout)
+# end
 
 get '/search_ajax' do 
   {suggestions: get_search_results(params[:query])}

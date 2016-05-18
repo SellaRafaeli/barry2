@@ -25,6 +25,13 @@ def verify_admin_val(coll, field, val)
   val
 end
 
+get '/admin/login_as' do  
+  user = $users.get(params[:user_id])
+  flash.msg = 'Logged in as '+user['email']
+  session[:user_id] = params[:user_id]
+  redirect back
+end
+
 post '/admin/create_item' do
   require_fields(['coll'])
   coll = $mongo.collection(params[:coll])

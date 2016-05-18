@@ -33,7 +33,7 @@ x=1
             <ul class="nav navbar-nav navbar-right header-links">
                 
                 <% if cu %>
-                    <li><a href="/me"><%= cu['username']%></a></li>                
+                    <li><a href="/me">Me (<%= cu['username']%>)</a></li>                
                 <% else %>
                     <li> <a class="nav-link" href="/register">Register</a></li>
                     <li> <a class="nav-link" href="/login">Log In</a></li>
@@ -43,7 +43,7 @@ x=1
                     <li> <a class="admin" href="/admin">Admin</a> </li> 
                 <% end %>                                     
                 
-                <li><a href="/search">Search</a></li>
+                <!-- <li><a href="/search">Search</a></li> -->
                 <li><a href="/about">About</a></li>
                 
 

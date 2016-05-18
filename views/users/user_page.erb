@@ -1,3 +1,12 @@
 <h1> User page </h1>
 
-<%= user.to_json %>
+
+<section>
+  <button class='btn btn-default btn-lg'><%= user['name']%></button>
+  <button class='btn btn-default btn-lg'><%= user['email']%></button>
+  <button class='btn btn-default btn-lg'><%= user['username']%></button>
+  <button class='btn btn-default btn-lg'><%= user['_id']%></button>
+  <% if is_admin %>
+  <a class='btn btn-danger btn-lg' href='/admin/login_as?user_id=<%=user['_id']%>'>Login As</a>
+  <% end %>
+</section>
