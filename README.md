@@ -17,3 +17,5 @@ $ filewatcher '**/*.scss' 'sass $FILENAME > $FILENAME.css; echo "created"-$FILEN
 #- create item for user
 #- search items
 #- send msgs
+- browse by categories
+- pay 

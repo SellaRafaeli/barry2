@@ -1,10 +1,12 @@
 <h1> Item page </h1>
 
 <section>
-  <lable>Title:</lable><button class='btn btn-default btn-lg'><%= item['title']%></button>
-  <lable>Desc:</lable><button class='btn btn-default btn-lg'><%= item['desc']%></button>
-  <lable>Created At:</lable><button class='btn btn-default btn-lg'><%= item['created_at']%></button>
+  <% [:title, :desc, :category, :created_at].each do |f| %>
+    <div>
+      <label class='well'><%= f.capitalize %>:</label><button class='btn btn-default btn-lg'><%= item[f.to_s]%></button>
+    </div>
+  <% end %>
   <% if item['user_id'] == cuid %>
-  <a class='btn btn-danger btn-lg' href='/edit_item?item_id=<%=item['_id']%>'>Edit Item</a>
+  <div> <a class='btn btn-danger btn-lg' href='/edit_item?item_id=<%=item['_id']%>'>Edit Item</a> </div>
   <% end %>
 </section>

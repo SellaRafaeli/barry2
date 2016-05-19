@@ -7,11 +7,19 @@
     <% if item['_id'] %>
     <input type="hidden" name='item_id' value='<%=item['_id']%>'> 
     <% end %>
-    <% SETTABLE_ITEM_FIELDS.each do |field| %>
+    <% [:title, :desc].each do |field| %>
       <div class="form-group">
         <label for="item-form-<%=field%>"><%=field.capitalize%></label>
         <input type="text" class="form-control" item=<%=field%> id="item-form-<%=field%>" placeholder="<%=field%>" name=<%=field%> value='<%=item[field]%>'>
       </div>
     <% end %>
+    <div class="form-group">
+      <label for="sel1">Category:</label>
+      <select name='category' class="form-control" id="sel1">
+        <% ITEM_CATEGORIES.each_with_index do |cat, idx| %>
+          <option <%="selected" if idx==0%>><%= cat %></option>
+        <% end %>
+      </select>
+    </div>
     <button type="submit" class="btn btn-default">Submit</button>
 </form>

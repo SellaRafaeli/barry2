@@ -6,9 +6,11 @@ Users
  - username
 
 Items 
+ - user_id
  - title
  - desc
  - slug
 
 Msgs
- - ids: []
+ - sender_id
+ - receiver_id

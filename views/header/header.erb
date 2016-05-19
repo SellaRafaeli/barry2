@@ -28,6 +28,9 @@ x=1
                 <div class="form-group">
                     <input type="text" id="header-search" class="form-control" placeholder="Search">
                 </div>
+                <% if is_admin %>
+                    <div class='form-group'> <a class="admin" href="/admin">Admin</a> </li> </div>
+                <% end %>                                                     
             </div>
             
             <ul class="nav navbar-nav navbar-right header-links">
@@ -38,11 +41,7 @@ x=1
                     <li> <a class="nav-link" href="/register">Register</a></li>
                     <li> <a class="nav-link" href="/login">Log In</a></li>
                 <% end %>
-                
-                <% if is_admin %>
-                    <li> <a class="admin" href="/admin">Admin</a> </li> 
-                <% end %>                                     
-                
+                                
                 <!-- <li><a href="/search">Search</a></li> -->
                 <li><a href="/inbox"><i class="fa fa-envelope"></i></a></li>
                 <li><a href="/about">About</a></li>

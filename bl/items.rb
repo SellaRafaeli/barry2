@@ -1,13 +1,19 @@
 $items = $mongo.collection('items')
 
-SETTABLE_ITEM_FIELDS = ['title','desc']
+SETTABLE_ITEM_FIELDS = ['title','desc', 'category']
+ITEM_CATEGORIES = ['Food', 'Entertainment', 'Business', 'Health', 'Sports', 'Other']
+
+def create_item(user_id, data) 
+  data = data.just(SETTABLE_ITEM_FIELDS)
+  data[:user_id] = user_id
+  data[:title] ||= 'item'
+  data[:slug]  = get_unique_slug($items,:slug,data[:title])
+  item = $items.add(data)
+end
 
 post '/add_item' do
   data = params.just(SETTABLE_ITEM_FIELDS)
-  data[:title]   ||= 'item'
-  data[:user_id]   = cuid
-  data[:slug]= get_unique_slug($items,:slug,data[:title])
-  item = $items.add(data)
+  item = create_item(cuid, data)
   redirect item_link(item)
 end
 
@@ -20,7 +26,6 @@ end
 
 post '/edit_item' do 
   item = $items.get(params[:item_id])
-  bp
   halt_back('Cannot do that.') unless item && item['user_id'] == cuid
 
   data = params.just(SETTABLE_ITEM_FIELDS)
