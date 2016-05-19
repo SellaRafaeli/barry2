@@ -1,0 +1,13 @@
+<%
+  items = $items.all(category: cat)
+%>
+
+<h1> <%= title.titleize %> </h1>
+
+<section>
+<% items.each do |item| %>
+  <div>
+    <%= erb :"items/single_item", locals: {item: item} %>
+  </div>
+<% end %>
+</section>

@@ -14,6 +14,8 @@ get '/inbox/:username' do
 end
 
 post '/send_msg' do
+  require_user
+
   user_id, text    = params[:user_id], params[:text]
   halt_back('Missing input.') unless text && (user = $users.get(user_id))
   

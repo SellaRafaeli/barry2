@@ -29,8 +29,8 @@ def halt_back(msg = 'Sorry!')
   redirect back
 end
 
-def require_sign_in(msg = nil)
-  halt_home unless cu
+def require_user(msg = 'You need to sign in first.')
+  halt_back(msg) unless cu
 end
 
 def require_obj(obj)
