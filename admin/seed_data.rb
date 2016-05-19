@@ -6,15 +6,17 @@ def create_seed_users
   (0..100).to_a.each { create_user({name: Faker::Name.name, email: Faker::Internet.email}) }
 end
 
+def create_user_item(user) 
+  user_id = user['_id']
+  title = [Faker::Commerce.product_name, "#{Faker::Hacker.adjective.capitalize} #{Faker::Hacker.noun.capitalize}"].sample
+  desc = [Faker::Company.catch_phrase.titleize, Faker::Company.bs.titleize].sample
+  create_item(user['_id'], {title: title, desc: desc, category: ITEM_CATEGORIES.sample})
+end
+
 def create_seed_items
   puts 'creating items'
   $items.delete_many
-  $users.all.to_a.each {|user|
-    user_id = user['_id']
-    title = [Faker::Commerce.product_name, "#{Faker::Hacker.adjective.capitalize} #{Faker::Hacker.noun.capitalize}"].sample
-    desc = [Faker::Company.catch_phrase.titleize, Faker::Company.bs.titleize].sample
-    create_item(user['_id'], {title: title, desc: desc, category: ITEM_CATEGORIES.sample})
-  }
+  $users.all.to_a.each {|user| rand(10).times { create_user_item(user) } }
 end
 
 def create_seed_data

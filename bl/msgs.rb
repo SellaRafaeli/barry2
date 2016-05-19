@@ -5,10 +5,14 @@ def add_msg(receiver_id, text)
 end
 
 get '/inbox' do
+  require_user
+  
   full_page_card :"pages/convos/convos", layout: :layout
 end
 
 get '/inbox/:username' do
+  require_user
+
   halt_back('No such user') unless user = $users.get(username: params[:username])
   full_page_card :"pages/convos/single_convo", layout: :layout, locals: {user: user}
 end

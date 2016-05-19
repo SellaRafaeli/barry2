@@ -1,14 +1,50 @@
 <style>
 .site_footer { background-color: steelblue; padding-bottom: 100px;}
-.footer_menu { font-weight: bold; color: white; }
-footer .col-md-2 a { color: black; display: block;}
+.footer_menu { font-weight: zbold; color: white; list-style: none}
+.footer_menu a { color: white; margin-top:10px; font-size: 16px; display: block;}
+footer .col-md-2 a { color: black; display: block; }
 footer .col-md-2 div { color: black; }
 </style>
+
+<%
+  links1 = ['faq','how_it_works', 'about', 'contact_us']
+  links2 = ['facebook','twitter', 'linkedin', 'blog']
+  links3 = ['support','legal', 'terms_of_service', 'privacy_policy']  
+  
+%>
 <footer class=''>
 
 <div class='row site_footer'>
-  <div class='col-md-12 centerText' style='padding-top:40px; padding-bottom: 50px;'>
-    (footer)
+  <div class='col-md-12' style='padding-top:40px; padding-bottom: 50px;'>
+    <div class='col-md-3'>
+      <ul class='footer_menu'>
+        <% links1.each do |link| %>
+          <li><a href='/<%=link%>'><%= link.titleize %></a></li>
+        <% end %>        
+      </ul>
+    </div>
+    <div class='col-md-3'>
+      <ul class='footer_menu'>
+        <% links2.each do |link| %>
+          <li><a href='/<%=link%>'><%= link.titleize %></a></li>
+        <% end %>        
+      </ul>
+    </div>    
+    <div class='col-md-3'>      
+      <ul class='footer_menu'>
+        <% links3.each do |link| %>
+          <li><a href='/<%=link%>'><%= link.titleize %></a></li>
+        <% end %>        
+      </ul>
+    </div>
+    <div class='col-md-3'>
+      <address>
+        <strong><%= $app_name.capitalize %>, Inc.</strong><br>
+        1355 Market Street, Suite 900<br>
+        San Francisco, CA 94103<br>
+        <abbr title="Phone">P:</abbr> (123) 456-7890
+      </address>
+    </div>
   </div>
 
 </div>
