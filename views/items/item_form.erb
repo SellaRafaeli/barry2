@@ -17,7 +17,7 @@
       <label for="sel1">Category:</label>
       <select name='category' class="form-control" id="sel1">
         <% ITEM_CATEGORIES.each_with_index do |cat, idx| %>
-          <option <%="selected" if idx==0%>><%= cat %></option>
+          <option <%="selected" if idx==0%> value='<%=cat%>'><%= cat.capitalize %></option>
         <% end %>
       </select>
     </div>

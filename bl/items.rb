@@ -1,7 +1,7 @@
 $items = $mongo.collection('items')
 
 SETTABLE_ITEM_FIELDS = ['title','desc', 'category']
-ITEM_CATEGORIES = ['Food', 'Entertainment', 'Business', 'Health', 'Sports', 'Other']
+ITEM_CATEGORIES = [:food, :entertainment, :business, :health, :sports, :other]
 
 def create_item(user_id, data) 
   data = data.just(SETTABLE_ITEM_FIELDS)
@@ -34,6 +34,13 @@ post '/edit_item' do
   $items.update_id(item['_id'],data)
   flash.msg = 'Updated item.'
   redirect back
+end
+
+get '/cat/:cat' do
+  cat = params[:cat]
+  halt_back('No such category') unless ITEM_CATEGORIES.include? cat.to_sym
+
+  full_page_card :"items/multi_items_page", locals: {cat: cat, title: cat}
 end
 
 get '/items/:slug' do

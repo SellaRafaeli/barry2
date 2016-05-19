@@ -43,7 +43,7 @@
   margin-bottom: 20px; }
   .slim-card .card-body {
     height: 30%;
-    padding: 18px; }
+    /*padding: 18px;*/ }
 
 .page {
   margin: 20px;

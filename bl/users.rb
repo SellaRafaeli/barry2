@@ -3,7 +3,7 @@ $users = $mongo.collection('users')
 SETTABLE_USER_FIELDS = ['email','name','username']
 
 def create_user(data)
-  login = to_username(data[:email].split("@")[0])
+  login = to_username(data[:name] || data[:email].split("@")[0])
   data[:username] = get_unique_slug($users,'username',login)
   $users.add(data)
 end

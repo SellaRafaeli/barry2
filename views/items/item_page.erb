@@ -1,11 +1,14 @@
-<h1> Item page </h1>
+<%
+  user ||= $users.get(item['user_id'])
+%>
+<h1> <%= item['title'] %> </h1>
+<small>(item page)</small>
 
 <section>
-  <% [:title, :desc, :category, :created_at].each do |f| %>
-    <div>
-      <label class='well'><%= f.capitalize %>:</label><button class='btn btn-default btn-lg'><%= item[f.to_s]%></button>
-    </div>
-  <% end %>
+  <p><b> <%= item['desc'] %> </b></p>
+  <p> Category: <a class='btn btn-default btn-lg' href='<%=cat_link(item) %>'> <%= item['category'] %> </a> </p>
+  <p> Owner: <a class='btn btn-default btn-lg' href='<%=user_link(user)%>'> <%= udn(user) %> </a> </p>
+  <p> Created at: <span> <%= item['created_at'] %> </span> </p>
   <% if item['user_id'] == cuid %>
   <div> <a class='btn btn-danger btn-lg' href='/edit_item?item_id=<%=item['_id']%>'>Edit Item</a> </div>
   <% end %>

@@ -9,6 +9,7 @@
   <% if is_admin %>
   <a class='btn btn-danger btn-lg' href='/admin/login_as?user_id=<%=user['_id']%>'>Login As</a>
   <% end %>
-
+  
+  <%= erb :"items/user_items", locals: {user: user} %>
   <%= erb :"pages/convos/send_msg_form", locals: {user: user} %>
 </section>
