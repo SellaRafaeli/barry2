@@ -1,11 +1,11 @@
 <h1> User page </h1>
 
-
-<section>
-  <button class='btn btn-default btn-lg'><%= user['name']%></button>
-  <button class='btn btn-default btn-lg'><%= user['email']%></button>
-  <button class='btn btn-default btn-lg'><%= user['username']%></button>
-  <button class='btn btn-default btn-lg'><%= user['_id']%></button>
+<%#= erb :"layout/partials/callout" %>
+<section class='col-md-6'>
+  <p class='bg-primary p15'><%= user['name']%></p>
+  <p class='bg-primary p15'><%= user['email']%></p>
+  <p class='bg-primary p15'><%= user['username']%></p>
+  <p class='bg-primary p15'><%= user['_id']%></p>
   <% if is_admin %>
   <a class='btn btn-danger btn-lg' href='/admin/login_as?user_id=<%=user['_id']%>'>Login As</a>
   <% end %>
