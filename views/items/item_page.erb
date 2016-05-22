@@ -6,7 +6,7 @@
 
 <section>
   <p><b> <%= item['desc'] %> </b></p>
-  <p> Category: <a class='btn btn-default btn-lg' href='<%=cat_link(item) %>'> <%= item['category'] %> </a> </p>
+  <p> Category: <a class='btn btn-default btn-lg' href='<%=item_cat_link(item) %>'> <%= item['category'] %> </a> </p>
   <p> Owner: <a class='btn btn-default btn-lg' href='<%=user_link(user)%>'> <%= udn(user) %> </a> </p>
   <p> Created at: <span> <%= item['created_at'] %> </span> </p>
   <% if item['user_id'] == cuid %>

@@ -1,3 +1,6 @@
-<h1>
-  Hi, welcome to <%= $app_name %>.
-</h1>
+<h1> Hi, welcome to <%= $app_name %>. </h1>
+
+<h3> Categories </h3>
+<% ITEM_CATEGORIES.each do |cat| %>
+  <a class='btn btn-lg btn-primary' href='<%=cat_link(cat)%>'> <%= cat.to_s.titleize %> </a>
+<% end %>

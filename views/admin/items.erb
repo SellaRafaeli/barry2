@@ -59,7 +59,7 @@
   
   <div class='col-md-12'>  
     <% MANAGEABLE_COLLECTIONS.each do |coll| %>
-      <a href="/admin/manage/<%=coll.name%>"><button class='btn'><%=coll.name%></button></a>
+      <a href="/admin/manage/<%=coll.name%>"><button class='btn'><%=coll.name%> <small>(<%= coll.count%>)</small></button></a>
     <% end %> 
   </div>
 

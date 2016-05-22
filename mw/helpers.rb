@@ -27,8 +27,12 @@ def item_link(i)
   $root_url+'/items/'+i['slug'].to_s 
 end
 
-def cat_link(i)
+def item_cat_link(i)
   $root_url+'/cat/'+i['category'].to_s 
+end
+
+def cat_link(cat)
+  $root_url+'/cat/'+cat.to_s 
 end
 
 def to_slug(s)
