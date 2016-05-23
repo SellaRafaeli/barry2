@@ -8,3 +8,8 @@ after do
     @response.body = @response.body.to_json   
   end 
 end
+
+def back_with_msg(msg)
+  flash.msg = msg
+  redirect back
+end

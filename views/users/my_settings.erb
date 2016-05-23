@@ -1,0 +1,16 @@
+<%
+  my_settings = $user_settings.get({user_id: cuid}) || {}  
+%>
+
+<h3> My settings :) </h3>
+<section>
+  <br>
+  <form action='/update_my_settings' method='post'>
+  <% USER_SETTINGS_FIELDS.each do |field| %>
+    <% val = my_settings[field[:name].to_s] 
+    %>
+    <%= erb :"users/setting_field", locals: {field: field, val: val} %>
+  <% end %>
+  <button class='btn btn-primary'> Update </button>
+  </form>
+</section>

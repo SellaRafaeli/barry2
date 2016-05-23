@@ -10,7 +10,7 @@ def get_search_items(crit)
   data[:desc]  = like_regex(crit[:desc])  if crit[:desc].present?
   data[:category] = crit[:category] if crit[:category].present?
   
-  items = $items.get_many(data)
+  items = $items.get_many(data, limit: 20)
 end
 
 get '/search_page' do  

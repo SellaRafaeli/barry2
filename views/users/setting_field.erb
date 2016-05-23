@@ -1,0 +1,24 @@
+<%
+  name, type = field[:name], field[:type]
+%>
+<div class=''>
+  <% if type == :bool %>
+  <div class="checkbox">
+    <label><input type='checkbox' name='<%=name%>' <%='checked' if val%>><%= name %> </label>
+  </div>
+  <% elsif type == :text %>
+  <div>
+    <label> <%= name %> </label>
+    <input class='form-control' type='text' name='<%=name%>' placeholder='<%= name %>' value='<%=val%>'>
+  </div>
+  <% elsif type == :multi %>
+  <div>
+    <label> <%= name %> </label>
+    <select name='<%=name%>' class="form-control">
+        <% field[:opts].each do |opt| %>
+          <option <%="selected" if val==opt%> value='<%=opt%>'><%= opt %></option>
+        <% end %>
+    </select>
+  </div>  
+  <% end %>
+</div>
