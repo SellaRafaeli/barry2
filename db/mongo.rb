@@ -78,3 +78,7 @@ def join_mongo_colls(coll1, id, colls)
   joined = colls.map { |coll| coll.find(fkey => item['_id']).to_a } # [posts, messages]
   return joined.unshift(item) # [user, posts, messages]
 end
+
+def like_regex(val)
+  {"$regex" => Regexp.new(val.to_s, Regexp::IGNORECASE) }
+end

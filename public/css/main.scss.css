@@ -72,7 +72,7 @@
 @keyframes yellow-fade {
   5% {
     background-color: #ff8; } }
-.search_page .search_result {
+.search_result {
   text-align: left; }
 
 .autocomplete-suggestions {

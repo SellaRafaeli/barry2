@@ -1,8 +1,3 @@
-<%
-  q = params[:q].to_s
-  results = get_search_results(q)
-%>
-
 <section>
   <div> search results </div>
   <% results.each do |item| %>
