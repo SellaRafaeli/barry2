@@ -17,12 +17,15 @@
   background-color: blue; }
 
 .p10 {
-  padding-left: 10px; }
+  padding: 10px; }
 
 .p15 {
   padding: 15px; }
 
-.centerText {
+.m20 {
+  margin: 20px; }
+
+.ct, .centerText {
   text-align: center; }
 
 .inp1 {

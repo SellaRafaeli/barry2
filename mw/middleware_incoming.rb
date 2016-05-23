@@ -10,8 +10,12 @@ def request_is_public?
   request_fullpath.to_s.starts_with?('/css/','/js/','/img/') rescue false 
 end
 
+NUMERIC_PARAMS = [:price]
+
 before do     
-  @time_started_request = Time.now    
+  @time_started_request = Time.now 
+
+  NUMERIC_PARAMS.each {|p| params[p] = params[p].to_f if params[p].present? }
 end
 
 def cu 

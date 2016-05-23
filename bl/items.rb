@@ -1,12 +1,14 @@
 $items = $mongo.collection('items')
 
-SETTABLE_ITEM_FIELDS = ['title','desc', 'category']
+SETTABLE_ITEM_FIELDS = ['title','desc', 'category', 'price']
 ITEM_CATEGORIES = [:food, :entertainment, :business, :health, :sports, :other]
 
 def create_item(user_id, data) 
   data = data.just(SETTABLE_ITEM_FIELDS)
   data[:user_id] = user_id
   data[:title] ||= 'item'
+  data[:price] ||= 5
+  data[:price] = data[:price].to_i
   data[:slug]  = get_unique_slug($items,:slug,data[:title])
   item = $items.add(data)
 end
@@ -30,6 +32,7 @@ post '/edit_item' do
 
   data = params.just(SETTABLE_ITEM_FIELDS)
   data[:title]   ||= 'item'
+  data[:price]   = data[:price].to_i
   
   $items.update_id(item['_id'],data)
   flash.msg = 'Updated item.'

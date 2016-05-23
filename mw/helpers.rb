@@ -39,6 +39,11 @@ def to_slug(s)
   s.to_s.to_slug.normalize.to_s.slice(0,200)
 end
 
+## imgs
+def random_img_url(w = 100,h = 100)
+  "https://source.unsplash.com/random/100x100"
+end
+
 
 
 get '/mw/helpers' do

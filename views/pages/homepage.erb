@@ -1,6 +1,8 @@
 <h1> Hi, welcome to <%= $app_name %>. </h1>
 
 <h3> Categories </h3>
+<div class='row'>
 <% ITEM_CATEGORIES.each do |cat| %>
-  <a class='btn btn-lg btn-primary' href='<%=cat_link(cat)%>'> <%= cat.to_s.titleize %> </a>
+  <%= erb :"pages/homepage/hp_cat", locals: {cat: cat} %>
 <% end %>
+</div>

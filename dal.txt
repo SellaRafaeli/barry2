@@ -10,6 +10,8 @@ Items
  - title
  - desc
  - slug
+ - category
+ - price
 
 Msgs
  - sender_id
