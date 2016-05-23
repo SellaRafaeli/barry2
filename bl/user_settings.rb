@@ -2,7 +2,6 @@ $user_settings = $mongo.collection('user_settings')
 
 post '/update_my_settings' do
   data = params.just(USFN)
-  bp
   data[:user_id] = cuid
   $user_settings.update_one({user_id: cuid},data,{upsert: true})
   back_with_msg('Updated Settings.')
