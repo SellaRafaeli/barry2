@@ -2,6 +2,7 @@ get '/about' do
   full_page_card(:"other/about")
 end 
 
+# demonstrative purposes
 get '/card' do
   full_page_card(:"other/about")
 end

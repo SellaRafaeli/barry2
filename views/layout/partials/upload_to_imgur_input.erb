@@ -1,0 +1,28 @@
+<script>
+imgurClientId='54683d093e16a62'
+
+function postImgFileToImgur(file, cb) {  
+  var formData = new FormData();
+  formData.append("image", file);
+  $.ajax({
+    url: "https://api.imgur.com/3/image",
+    type: "POST", datatype: "json",
+    headers: {"Authorization": "Client-ID "+imgurClientId},
+    data: formData,
+    success: cb,
+    cache: false, contentType: false, processData: false
+  });
+}
+
+function appendImgToFileInput(input) {
+  var file = $(input)[0].files[0]; //console.log(file.name);
+  postImgFileToImgur(file, function(res){
+    var link = res.data.link; //console.log(res.data);  
+    $(input).after('<img height=100 src='+link+'/><input type="hidden" name="imgs[]" value="'+link+'">');
+    $(input)[0].value = '';
+  })
+}
+</script>
+
+<%# when file is chosen, it is uploaded to imgur, an input with the link is appended, and the selection is cleared. %>
+<input onchange=appendImgToFileInput(this) class='form-control' type='file'/>

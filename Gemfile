@@ -25,13 +25,13 @@ gem 'colorize'
 gem 'literate_randomizer'
 gem 'faker'
 gem 'bcrypt'
+gem 'aws-sdk', '~> 2' 
 #gem 'base62' #allows compression of mongo ids
 
 group :development, :test do
   gem 'puma'
   gem 'shotgun'
   gem 'sinatra-reloader'
-  gem 'faker' 
   gem 'nokogiri'
   gem 'sass'
   gem 'filewatcher'
