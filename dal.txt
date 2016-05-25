@@ -4,6 +4,8 @@ Document Access Layer.txt
 Users
  - email
  - username
+ - name
+ - imgs ['url', 'url']
 
 Items 
  - user_id
@@ -12,7 +14,19 @@ Items
  - slug
  - category
  - price
+ - imgs: [{link:}, {link: }]
 
 Msgs
  - sender_id
  - receiver_id
+
+Payments
+ - user_id
+ - seller_id
+ - item_id
+ - price 
+ - statu
+ - paypal_pay_key
+ - paypal_data
+ - paid (if exists, paid)
+ - status

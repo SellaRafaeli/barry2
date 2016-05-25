@@ -13,3 +13,8 @@ def back_with_msg(msg)
   flash.msg = msg
   redirect back
 end
+
+def redirect_with_msg(link, msg)
+  flash.msg = msg
+  redirect link
+end

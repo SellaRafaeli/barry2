@@ -1,16 +1,25 @@
 <%
-  fields = SETTABLE_USER_FIELDS
 %>
 
 <div class='col-md-4'>
   <h3> My details </h3>
   <form action='/update_me' method='post'>
-    <% SETTABLE_USER_FIELDS.each do |field| %>
+    <% ['email','name','username'].each do |field| %>
       <div class="form-group">
         <label for="me-form-<%=field%>"><%=field.capitalize%></label>
         <input type="text" class="form-control" name=<%=field%> id="me-form-<%=field%>" placeholder="<%=field%>" value='<%=cu[field]%>'>
       </div>
     <% end %>
+    <div class="form-group">
+        <% if cu['imgs'] %>
+          <div>
+            <label style='display:block'> My Image </label>
+            <img src="<%=cu['imgs'][0]%>" height=100 display:block>
+          </div>
+        <% end %>
+        <label> New Image </label>
+        <%= erb :"layout/partials/upload_to_imgur_input" %>
+    </div>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
 

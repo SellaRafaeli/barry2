@@ -14,6 +14,13 @@ def user_link(u)
 rescue '/oops'
 end
 
+def user_img_tag(u, opts = {})
+  url = u['imgs'] && u['imgs'][0] 
+  height = opts[:height] || 100
+  %Q{<img src=#{url} height=#{height}>} if url
+rescue ''
+end
+
 def udn(u) #user display name
   u['name'] || u['username'] || 'Somebody'
 end

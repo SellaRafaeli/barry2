@@ -1,6 +1,6 @@
 $users = $mongo.collection('users')
 
-SETTABLE_USER_FIELDS = ['email','name','username']
+SETTABLE_USER_FIELDS = ['email','name','username','imgs']
 
 def create_user(data)
   login = to_username(data[:name] || data[:email].split("@")[0])

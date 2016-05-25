@@ -26,6 +26,7 @@ gem 'literate_randomizer'
 gem 'faker'
 gem 'bcrypt'
 gem 'aws-sdk', '~> 2' 
+gem 'paypal-sdk-adaptivepayments'
 #gem 'base62' #allows compression of mongo ids
 
 group :development, :test do

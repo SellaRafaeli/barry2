@@ -2,6 +2,7 @@
 
 <%#= erb :"layout/partials/callout" %>
 <section class='col-md-6'>
+  <%= user_img_tag(user) %>
   <p class='bg-primary p15'><%= user['name']%></p>
   <p class='bg-primary p15'><%= user['email']%></p>
   <p class='bg-primary p15'><%= user['username']%></p>

@@ -35,7 +35,7 @@ x=1
             <ul class="nav navbar-nav navbar-right header-links">
                 
                 <% if cu %>
-                    <li><a href="/me">Me (<%= cu['username']%>)</a></li>                
+                    <li><a href="/me"><%= user_img_tag(cu, height: 20) %> Me (<%= cu['username']%>)</a></li>                
                     <li><a href="/inbox"><i class="fa fa-envelope"></i></a></li>                    
                 <% else %>
                     <li> <a class="nav-link" href="/register">Register</a></li>

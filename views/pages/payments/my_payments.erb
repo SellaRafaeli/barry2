@@ -1,0 +1,10 @@
+<%
+  payments = $payments.all(paid: true)
+%>
+
+<h1> My payments </h1>
+
+<% payments.each do |payment| %>
+  <%= payment.to_json %>
+<% end %>
+

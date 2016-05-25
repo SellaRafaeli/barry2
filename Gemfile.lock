@@ -65,6 +65,11 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     paint (1.0.1)
+    paypal-sdk-adaptivepayments (1.117.1)
+      paypal-sdk-core (~> 0.3.0)
+    paypal-sdk-core (0.3.4)
+      multi_json (~> 1.0)
+      xml-simple
     pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
@@ -131,6 +136,7 @@ GEM
     unf_ext (0.0.7.2)
     wirb (2.0.0)
       paint (>= 0.9, < 2.0)
+    xml-simple (1.1.5)
 
 PLATFORMS
   ruby
@@ -151,6 +157,7 @@ DEPENDENCIES
   literate_randomizer
   mongo (~> 2.1.0)
   nokogiri
+  paypal-sdk-adaptivepayments
   pg
   pry-byebug (= 2.0.0)
   puma
