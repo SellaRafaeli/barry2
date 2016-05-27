@@ -50,11 +50,24 @@ class Mongo::Collection
   end
 
   #create
-  def add(doc)
-    doc[:_id] ||= nice_id
+  def add(doc)    
+    simple_add(doc)
+    #smart_add(doc)
+  end
+
+  def simple_add(doc)
+    doc[:_id]      ||= nice_id
     doc[:created_at] = Time.now
     self.insert_one(doc)
     doc.hwia
+  end
+
+  def smart_add(doc)
+    doc[:_id] = (self.count + 1).base62_encode
+    simple_add(doc)
+  rescue Mongo::Error::OperationFailure => e
+    return simple_add(doc) if e.include?('duplicate key error')
+    raise e
   end
 
   def get_or_add(fields)

@@ -23,7 +23,4 @@ $ filewatcher '**/*.scss' 'sass $FILENAME > $FILENAME.css; echo "created"-$FILEN
 - purchase  
 - search items by fields
 - user settings 
-
-
-
-
+- 

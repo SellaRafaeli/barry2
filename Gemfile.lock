@@ -25,6 +25,7 @@ GEM
       aws-sdk-core (= 2.3.7)
     babosa (1.0.2)
     backports (3.6.8)
+    base62 (1.0.0)
     bcrypt (3.1.11)
     bond (0.5.1)
     bson (3.2.6)
@@ -146,6 +147,7 @@ DEPENDENCIES
   activesupport (= 4.0.0)
   aws-sdk (~> 2)
   babosa (= 1.0.2)
+  base62
   bcrypt
   bson_ext
   colorize
