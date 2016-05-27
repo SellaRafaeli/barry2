@@ -25,8 +25,14 @@ Payments
  - seller_id
  - item_id
  - price 
- - statu
  - paypal_pay_key
  - paypal_data
  - paid (if exists, paid)
  - status
+
+Purchases 
+- user_id
+- seller_id
+- item_id 
+- payment_id
+- price

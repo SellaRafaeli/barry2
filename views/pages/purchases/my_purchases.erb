@@ -1,0 +1,10 @@
+<%
+  purchases = $purchases.all(user_id: cuid)
+%>
+
+<h1> My purchases </h1>
+
+<h3> Stuff you bought </h3>
+<% purchases.each do |purchase| %>
+  <%= erb :"pages/purchases/single_purchase", locals: {purchase: purchase} %>
+<% end %>
