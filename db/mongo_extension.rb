@@ -51,8 +51,8 @@ class Mongo::Collection
 
   #create
   def add(doc)    
-    simple_add(doc)
-    #smart_add(doc)
+    # => simple_add(doc)
+    smart_add(doc)
   end
 
   def simple_add(doc)
@@ -63,9 +63,10 @@ class Mongo::Collection
   end
 
   def smart_add(doc)
-    doc[:_id] = (self.count + 1).base62_encode
+    doc[:_id] = (self.count + 1).to_s#.base62_encode 
     simple_add(doc)
   rescue Mongo::Error::OperationFailure => e
+    puts "oops on #{doc[:_id]}".red
     return simple_add(doc) if e.include?('duplicate key error')
     raise e
   end
