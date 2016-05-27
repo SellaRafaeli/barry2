@@ -52,23 +52,34 @@
        .error(function(res){ alert(res.responseJSON.msg)});
     }
   }
+
+  function showVal(value) {
+    $('.itemDetails').html(value);
+  }
 </script>
 
 
 <div class='row'>
   
-  <div class='col-md-12'>  
-    <% MANAGEABLE_COLLECTIONS.each do |coll| %>
-      <a href="/admin/manage/<%=coll.name%>"><button class='btn'><%=coll.name%> <small>(<%= coll.count%>)</small></button></a>
-    <% end %> 
+  <div class='col-md-6 border1'>
+    <div class='col-md-12'>  
+      <% MANAGEABLE_COLLECTIONS.each do |coll| %>
+        <a href="/admin/manage/<%=coll.name%>"><button class='btn'><%=coll.name%> <small>(<%= coll.count%>)</small></button></a>
+      <% end %> 
+    </div>
+
+    <div class='col-md-12'>  
+      <p> Showing <%=items.size%> <%=coll.name%> out of a (total <%=coll.name%> in system: <%= coll.count %>) </p>
+    </div>    
+
+    <div class='col-md-12'>  
+      <%= erb :"/admin/items_crit", locals: locals %>
+    </div>
   </div>
 
-  <div class='col-md-12'>  
-    <p> Showing <%=items.size%> <%=coll.name%> out of a (total <%=coll.name%> in system: <%= coll.count %>) </p>
-  </div>    
-
-  <div class='col-md-12'>  
-    <%= erb :"/admin/items_crit", locals: locals %>
+  <div class='col-md-6'>
+    <h5> Selected Cell </h5>
+    <code class='itemDetails'><%= $users.random %></code>
   </div>
 
   <div class='col-md-12' style='border:1px solid red'>  
@@ -82,7 +93,7 @@
       </tr>
       </thead>
       <% items.each do |item| %>      
-        <tr class='mongo_item_row'>
+        <tr class='mongo_item_row' data-item='<%=item.to_json%>'>
           <% fields.each do |field| %>
             <% 
               id      = item["_id"]
@@ -93,7 +104,7 @@
               
               
             %>
-            <td class='mongo_item_cell truncate' ondblclick="editItem(this, '<%=coll_name%>','<%=id%>','<%=field%>','<%=val%>')"> <%= val %> </td>
+            <td class='mongo_item_cell truncate' onclick="showVal('<%=val%>')" ondblclick="editItem(this, '<%=coll_name%>','<%=id%>','<%=field%>','<%=val%>')"> <%= val %> </td>
           <% end %>
           <td> 
             <i class="fa fa-times-circle-o" onclick="deleteItem('<%=coll_name%>','<%=item['_id']%>', this)" style='font-size:20px; color:darkred; cursor: pointer'></i>

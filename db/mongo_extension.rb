@@ -63,7 +63,7 @@ class Mongo::Collection
   end
 
   def smart_add(doc)
-    doc[:_id] = (self.count + 1).to_s#.base62_encode 
+    doc[:_id] = ((self.count + 1)).to_s#.base62_encode 
     simple_add(doc)
   rescue Mongo::Error::OperationFailure => e
     puts "oops on #{doc[:_id]}".red
