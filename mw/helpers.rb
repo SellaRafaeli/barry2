@@ -11,7 +11,8 @@ end
 ## user helpers
 def user_link(u)
   $root_url+'/u/'+u['username'].to_s 
-rescue '/oops'
+rescue => e 
+  '/oops'
 end
 
 def user_img_tag(u, opts = {})

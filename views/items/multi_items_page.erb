@@ -1,5 +1,5 @@
 <%
-  items = $items.all(category: cat)
+  items = $items.all({category: cat}, sort: [{price: 1}])
 %>
 
 <h1> <%= title.titleize %> </h1>

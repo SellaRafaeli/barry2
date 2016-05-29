@@ -24,6 +24,8 @@
   </form>
 
   <hr/>
+  <a class='btn btn-default' href='/my_purchases'> My purchases </a>
+  <hr/>
   <%= erb :"items/user_items", locals: {user: cu} %>
   <%= erb :"items/item_form", locals: {route: '/add_item', title: 'Add Item'} %>
 </div>

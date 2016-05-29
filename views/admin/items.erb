@@ -79,7 +79,7 @@
 
   <div class='col-md-6'>
     <h5> Selected Cell </h5>
-    <code class='itemDetails'><%= $users.random %></code>
+    <code class='itemDetails'></code>
   </div>
 
   <div class='col-md-12' style='border:1px solid red'>  
@@ -101,8 +101,6 @@
               val = escape_html(val)
               val = val.gsub(/#{anywhere_val}/i) { |s| "<mark>#{s}</mark>" } if anywhere_val && val.downcase.include?(anywhere_val.downcase)
               #val = val.gsub(,"<mark>#{anywhere_val}</mark>") if anywhere_val && val.include?(anywhere_val)
-              
-              
             %>
             <td class='mongo_item_cell truncate' onclick="showVal('<%=val%>')" ondblclick="editItem(this, '<%=coll_name%>','<%=id%>','<%=field%>','<%=val%>')"> <%= val %> </td>
           <% end %>

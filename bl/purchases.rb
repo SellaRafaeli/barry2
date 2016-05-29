@@ -1,7 +1,8 @@
 $purchases = $mongo.collection('purchases') #purchases are payments that were completed.
 
-def create_purchase(user_id, seller_id, item_id)
-  data = {user_id: user_id, seller_id: seller_id, item_id: item_id, price: price}
+def create_purchase(payment_data)
+  data = payment_data.just('user_id', 'seller_id', 'item_id', 'price', 'item_title')
+  data[:payment_id] = payment_data['_id']
   $purchases.add(data)
 end
 

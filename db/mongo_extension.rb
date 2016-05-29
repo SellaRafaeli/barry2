@@ -9,7 +9,7 @@ class Mongo::Collection
     self.find(params, opts).to_a
   end
 
-  def all(params = {}, opts = {})
+  def all(params = {}, opts = {sort: [{created_at: -1}]})
     get_many(params, opts)
   end
 
@@ -97,3 +97,8 @@ class Mongo::Collection
     mongo_coll_keys(self)
   end  
 end #end Mongo class 
+
+
+get '/db/mongo_extension' do
+  {refresh: true}
+end

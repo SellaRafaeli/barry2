@@ -1,14 +1,14 @@
 $payments = $mongo.collection('payments')
 
 def create_payment(params)
-  data = params.just(:user_id, :seller_id, :item_id, :price)
+  data = params.just(:user_id, :seller_id, :item_id, :price, :item_title)
   $payments.add(data)
 end
 
 get '/payment_page' do  
   item    = $items.get(params[:item_id]) || halt_back('Bad item.')
   seller  = $users.get(item['user_id']) || halt_back('Bad seller.')
-  payment = create_payment({item_id: item['_id'], seller_id: seller['_id'], user_id: cuid, price: item['price']})
+  payment = create_payment({item_id: item['_id'], seller_id: seller['_id'], user_id: cuid, price: item['price'], item_title: item['title']})
 
   pp = payment_page = build_paypal_payment_page(payment, item)
   halt_back(pp[:err]) if pp[:err]     
@@ -30,6 +30,6 @@ get '/paypal_confirm' do
   info[:paid] = true if paypal_data[:confirmed_paid]
   $payments.update_id(payment['_id'], info)
 
-  create_purchase(payment['user_id'], payment['seller_id'], payment['item_id'], payment['price'])
+  create_purchase(payment)
   redirect '/my_purchases'
 end
