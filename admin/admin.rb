@@ -9,7 +9,7 @@ get "/admin/manage/:coll" do
 end 
 
 $sella = $users.get(email: 'sella.rafaeli@gmail.com')
-$sella_id = $sella['_id']
+$sella_id = $sella && $sella['_id']
 def is_admin(user = cu)
   user == $sella rescue false
 end

@@ -27,7 +27,7 @@ def udn(u) #user display name
 end
 
 def to_username(s)
-  s.gsub('.','-').gsub(' ','-').gsub(/[^a-zA-Z0-9-_]/, '')
+  s.to_s.gsub('.','-').gsub(' ','-').gsub(/[^a-zA-Z0-9-_]/, '')
 end
 
 ## items

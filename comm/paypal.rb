@@ -58,3 +58,4 @@ end
 get '/comm_paypal' do
   {refresh: true}
 end
+
