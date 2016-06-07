@@ -10,7 +10,7 @@ gem 'bson_ext'
 gem 'pg'
 gem 'activerecord'
 gem 'sinatra-activerecord'
-#gem 'rake'
+gem 'rake'
 gem 'json',                 '1.8.2'
 gem 'pry-byebug',           '2.0.0' # binding.pry for breakpoints
 gem 'tux'
@@ -30,6 +30,10 @@ gem 'bcrypt'
 gem 'paypal-sdk-adaptivepayments'
 gem 'base62' #allows compression of mongo ids
 gem 'puma'
+gem "bunny",              ">= 1.7.0" # rabbit
+gem 'redis', '~>3.2'
+#gem 'resque', "~> 1.22.0"
+
 
 group :development, :test do
   gem 'shotgun'

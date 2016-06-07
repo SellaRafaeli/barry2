@@ -20,7 +20,6 @@ $ filewatcher '**/*.scss' 'sass $FILENAME > $FILENAME.css; echo "created"-$FILEN
 #- browse by categories
 #- homepage: categories, users 
 
-- purchase  
-- search items by fields
-- user settings 
-- 
+TODOs
+- display images on item page
+- do background tasks via redis

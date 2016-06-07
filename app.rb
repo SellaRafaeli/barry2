@@ -18,6 +18,7 @@ require './setup'
 require './my_lib'
 
 require_all './db'
+require     './bg/bg_tasks'
 require_all './bl'
 require_all './admin'
 require_all './comm'
