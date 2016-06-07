@@ -22,4 +22,3 @@ $ filewatcher '**/*.scss' 'sass $FILENAME > $FILENAME.css; echo "created"-$FILEN
 
 TODOs
 - display images on item page
-- do background tasks via redis

@@ -8,10 +8,6 @@ GET  = :GET
 POST = :POST
 PUT  = :PUT 
 
-def bp
-  binding.pry
-end
-
 def full_route(relative_route)
   "#{$base_url}#{relative_route}"
 end
