@@ -32,6 +32,7 @@ gem 'base62' #allows compression of mongo ids
 gem 'puma'
 gem "bunny",              ">= 1.7.0" # rabbit
 gem 'redis', '~>3.2'
+gem 'postmark'
 #gem 'resque', "~> 1.22.0"
 
 

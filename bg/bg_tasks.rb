@@ -16,7 +16,6 @@ def rabbit_channel
 end
 
 def send_bg_event(payload) 
-  puts "sending bg" 
   @default_exchange ||= rabbit_channel.default_exchange
   @default_exchange.publish(payload.to_json, :routing_key => BG_TASKS_QUEUE)
 end
