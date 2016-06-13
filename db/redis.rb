@@ -1,4 +1,4 @@
-$redis = ($prod ? Redis.new(ENV['REDIS_URL']) : Redis.new)
+$redis = ($prod ? Redis.new(url: ENV['REDIS_URL']) : Redis.new)
 
  
 
