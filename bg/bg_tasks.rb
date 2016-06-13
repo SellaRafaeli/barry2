@@ -1,5 +1,5 @@
 BG_TASKS_QUEUE = :bg_tasks_queue
-$do_async = true
+$do_async = $prod
 
 def do_direct(payload)
   method_name = payload.delete('method_name')

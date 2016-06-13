@@ -8,6 +8,11 @@ def send_email(data)
   POSTMARK_CLIENT.deliver(data)
 end
 
+def send_bg_email(data)
+  data = data.just(:to, :subject, :html_body)
+  do_bg(:send_email, data)
+end
+
 get '/test_bg_email' do
   do_bg(:send_email, to: 'sella.rafaeli@gmail.com', subject: 'Hi', html_body: "<strong>Hello: #{Time.now}</strong>")
   {msg: "sending email..."}

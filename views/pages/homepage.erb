@@ -1,8 +1,27 @@
-<h1> Hi, welcome to <%= $app_name %>. </h1>
+<style>
+.jumbo {
+  font-size: 50px;
+  width: 200px;
+  margin-top: 40px;
+}
+</style>
+<h1 class='ct'> Hi, welcome to <%= $app_name %>. </h1>
 
-<h3> Categories </h3>
 <div class='row'>
-<% ITEM_CATEGORIES.each do |cat| %>
-  <%= erb :"pages/homepage/hp_cat", locals: {cat: cat} %>
+<% if false %>
+  <% ITEM_CATEGORIES.each do |cat| %>
+    <%= erb :"pages/homepage/hp_cat", locals: {cat: cat} %>
+  <% end %>
 <% end %>
+
+<div class='jumbotron ct'>
+    <h1> 
+      <span>Ready for production</span>
+      <p></p>
+      <div>
+        <a href='/search_page' class='btn btn-lg btn-primary jumbo'>Shop</a>
+        <button class='btn btn-lg btn-success jumbo'>Sell</button>
+      </div>
+    </h1> 
 </div>
+

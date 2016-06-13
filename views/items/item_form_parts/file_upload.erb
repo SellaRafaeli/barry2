@@ -5,7 +5,8 @@
 
 <input type='hidden' id='zip_url_input' name='zip_url'>
 <button type='button' id='zip_url_display' class='btn btn-success noDisplay'></button>
-<input id='fileLoader' type="filepicker" data-fp-apikey="AwIje0068R1ysDHPZXrSMz" data-fp-mimetypes="*/*" data-fp-container="modal" onchange="appendFileInput(event)">
+
+<input id='fileLoader' type="filepicker" data-fp-apikey="<%= ENV['FILEPICKER_API_KEY'] %>" data-fp-mimetypes=".zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed" data-fp-container="modal" data-fp-services="COMPUTER" onchange="appendFileInput(event)" >
 
 
 <script>
