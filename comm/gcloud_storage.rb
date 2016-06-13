@@ -1,23 +1,25 @@
-def get_google_bucket
-  puts 'getting google bucket...'
-  Faraday.default_adapter = :httpclient
+# Not Used!
 
-  # Only add the following statement if using Faraday >= 0.9.2
-  # Override gzip middleware with no-op for httpclient
-  Faraday::Response.register_middleware :gzip => Faraday::Response::Middleware
-  @gcloud  ||= Gcloud.new.storage
-  @bucket  ||= @gcloud.bucket 'barry2'
-end
+# def get_google_bucket
+#   puts 'getting google bucket...'
+#   Faraday.default_adapter = :httpclient
 
-def upload_to_gcloud_storage(local_path, remote_path = nil)
-  @bucket     ||= get_google_bucket  
-  remote_path ||= local_path
-  @bucket.create_file local_path, remote_path
-end
+#   # Only add the following statement if using Faraday >= 0.9.2
+#   # Override gzip middleware with no-op for httpclient
+#   Faraday::Response.register_middleware :gzip => Faraday::Response::Middleware
+#   @gcloud  ||= Gcloud.new.storage
+#   @bucket  ||= @gcloud.bucket 'barry2'
+# end
 
-def upload_zip_to_gcloud(local_path)
-  upload_to_gcloud_storage(local_path,'zips/'+nice_id)
-end
+# def upload_to_gcloud_storage(local_path, remote_path = nil)
+#   @bucket     ||= get_google_bucket  
+#   remote_path ||= local_path
+#   @bucket.create_file local_path, remote_path
+# end
+
+# def upload_zip_to_gcloud(local_path)
+#   upload_to_gcloud_storage(local_path,'zips/'+nice_id)
+# end
 
 # def get_signed_url_for_new_file
 #   @bucket ||= get_google_bucket
