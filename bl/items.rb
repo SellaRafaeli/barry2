@@ -4,6 +4,7 @@ SETTABLE_ITEM_FIELDS = ['title','desc', 'category', 'price', 'imgs']
 ITEM_CATEGORIES = [:food, :entertainment, :business, :health, :sports, :other]
 
 def create_item(user_id, data) 
+  bp
   data = data.just(SETTABLE_ITEM_FIELDS)
   data[:user_id] = user_id
   data[:title] ||= 'item'
@@ -55,6 +56,11 @@ get '/cat/:cat' do
   full_page_card :"items/multi_items_page", locals: {cat: cat, title: cat}
 end
 
+get '/items/:creation_page' do
+  full_page_card :"items/item_form", locals: {route: '/add_item', title: 'Add Item'}
+end
+
+# must be bottom
 get '/items/:slug' do
   item = $items.get(slug: params[:slug])
   halt_back('No such item...') unless item

@@ -33,6 +33,8 @@ gem 'puma'
 gem "bunny",              ">= 1.7.0" # rabbit
 gem 'redis', '~>3.2'
 gem 'postmark'
+gem 'gcloud' 
+gem 'faraday', '0.9.2'
 #gem 'resque', "~> 1.22.0"
 
 
