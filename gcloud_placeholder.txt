@@ -1,0 +1,1 @@
+This file is here so we can upload a file to Gcloud and then set writeable permissions on it, thereby allowing a user to upload here.
