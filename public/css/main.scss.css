@@ -76,7 +76,11 @@
   5% {
     background-color: #ff8; } }
 .search_result {
-  text-align: left; }
+  text-align: left;
+  height: 200px;
+  background-color: whitesmoke;
+  padding: 10px;
+  margin-bottom: 10px; }
 
 .autocomplete-suggestions {
   border: 1px solid #999;

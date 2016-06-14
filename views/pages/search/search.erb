@@ -1,5 +1,5 @@
 <h1> Search </h1>
-<div class='col-md-4 search_page'>  
+<div class='col-md-2 search_page'>  
   <form action='/search_page' method='get'>
     <div class="form-group">
       <label>Name Contains</label>
@@ -11,20 +11,19 @@
       <label>Price below</label>
       <input type="number" class='form-control' name='price' value='<%=params[:price]%>'>
       
-      <label>Category</label>
-      <select name='category' class="form-control" id="sel1">
-          <option value=''>Any</option>
-        <% ITEM_CATEGORIES.each_with_index do |cat, idx| %>
-          <option value='<%=cat%>' <%='selected' if cat.to_s==params[:category]%>><%= cat.capitalize %></option>
-        <% end %>
-      </select>
+      <% [['category', ITEM_CATEGORIES], ['subcat', ITEM_SUBCATS], 
+          ['material',ITEM_MATERIALS],['type',ITEM_TYPES]
+          ].each do |list| %>
+        <%= erb :"pages/search/dropdown", locals: {list: list}%>
+      <% end %>      
+
       <!-- <p class="help-block">Search for users or posts.</p> -->
     </div>
     <button type="submit" class="btn btn-default">Search</button>
   </form>  
 </div>
 
-<div class='col-md-8'>
+<div class='col-md-10'>
 <% if results %>
     <%= erb :"pages/search/search_results", locals: {results: results} %>
 <% end %>

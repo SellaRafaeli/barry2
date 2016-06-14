@@ -9,7 +9,9 @@ def get_search_items(crit)
   data[:title] = like_regex(crit[:title]) if crit[:title].present?
   data[:desc]  = like_regex(crit[:desc])  if crit[:desc].present?
   data[:price] = {"$lt": crit[:price]} if crit[:price].present?
-  data[:category] = crit[:category] if crit[:category].present?
+  [:category,:subcat,:type,:material].each { |field|
+    data[field] = crit[field] if crit[field].present?
+  }
 
   items = $items.get_many(data, limit: 20).sort_by{|i| i['price']}
 end

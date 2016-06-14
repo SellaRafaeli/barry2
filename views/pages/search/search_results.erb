@@ -1,9 +1,7 @@
-<section>
-  <div> search results </div>
-  <% results.each do |item| %>
-    <div> 
+<section class=''>
+  <!-- <div> search results </div> -->
+  <% results.each do |item| %>    
       <%= erb :"pages/search/search_item", locals: {item: item} %>
-    </div>
   <% end %>
 </section>
 

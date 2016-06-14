@@ -6,6 +6,10 @@
 
 <section>
   <p><b> <%= item['desc'] %>, <%= item['price'] %>$ </b></p>
+  <% ['category', 'subcat','type','material','technology'].each do |field| %>
+    <p> <%= field.capitalize%>: <strong><%= item[field] %> </strong></p>
+  <% end %>
+    
   <p> Category: <a class='btn btn-default btn-lg' href='<%=item_cat_link(item) %>'> <%= item['category'] %> </a> </p>
   <p> Owner: <a class='btn btn-default btn-lg' href='<%=user_link(user)%>'> <%= udn(user) %> </a> </p>
   <p> Created at: <span> <%= item['created_at'] %> </span> </p>

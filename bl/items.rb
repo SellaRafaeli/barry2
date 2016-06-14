@@ -1,7 +1,12 @@
 $items = $mongo.collection('items')
 
-SETTABLE_ITEM_FIELDS = ['title','desc', 'category', 'price', 'imgs', 'zip_url']
-ITEM_CATEGORIES = [:food, :entertainment, :business, :health, :sports, :other]
+SETTABLE_ITEM_FIELDS = ['title','desc', 'category', 'subcat', 'type', 'material', 'technology', 'price', 'imgs', 'zip_url']
+
+ITEM_CATEGORIES = [:pop, :wine_stand]
+ITEM_SUBCATS    = [:subcat1, :subcat2]
+ITEM_TYPES      = [:type1, :type2]
+ITEM_MATERIALS  = [:iron, :wood, :bronze]
+ITEM_TECHNOLOGIES = [:laser, :cad]
 
 def create_item(user_id, data) 
   data = data.just(SETTABLE_ITEM_FIELDS)

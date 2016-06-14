@@ -1,3 +1,5 @@
-<a class='btn btn-lg btn-default btn-block search_result' href="<%=item_link(item)%>">
-  <%= item['title'] %>: <%= item['desc'] %> (<b><%=item['price']%>$</b>, <%=item['category']%>)
+<a class='col-md-3 search_result_container' href="<%=item_link(item)%>">
+  <article class='search_result'>
+  <%= item['title'] %>: <%= item['desc'] %> (<b><%=item['price']%>$</b>, <%=item['category']%>, <%=item['subcat']%>, <%=item['type']%>, <%=item['material']%>, <%=item['technology']%>)
+  </article>
 </a>
