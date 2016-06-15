@@ -8,6 +8,14 @@ def create_user(data)
   $users.add(data)
 end
 
+def update_cu(coll, data)
+  $users.update_id(cuid,data) if cu
+end
+
+def user_verified_email(user)
+  user && user['verified_email']
+end
+
 get '/u/:username' do
   user = $users.get(username: params[:username])
   full_page_card :"users/user_page", locals: {user: user}

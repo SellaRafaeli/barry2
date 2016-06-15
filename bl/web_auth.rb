@@ -1,19 +1,26 @@
-def send_welcome_and_verify_email(user)
-  token      = user['email'] + "-verify_email-" + guid
+def send_entry_link_email(user, subj = nil)
+  token      = user['email'] + "--" + guid
   user_email = user['email']
-  $redis.set(token, user_email)
-  link = "#{$root_url}/verify_email?token=#{token}"
-  body = "Hey, here is your link to verify your email: <a href='#{link}'>#{link}</a>"
-  send_bg_email(to: user['email'], subject: "Verify your email at #{$app_name}", html_body: body)
+  $redis.setex(token, ONE_HOUR_IN_SECONDS, user_email)
+  
+  subj ||= "Login Link to #{$app_name}"
+  link = "#{$root_url}/token_entry?token=#{token}"  
+  body = "Hey, here is your link to log into #{$app_name}. Click here to verify your email and log in: <a href='#{link}'>#{link}</a>"
+  send_bg_email(to: user['email'], subject: subj, html_body: body)
 end
 
 def send_forgot_password_email(user)
-  token      = user['email'] + "-forgot_password-" + guid
-  user_email = user['email']
-  $redis.setex(token, ONE_HOUR_IN_SECONDS, user_email)
-  link = "#{$root_url}/token_entry?token=#{token}"
-  body = "Hey, here is your link to log back into #{$app_name}. Click here to log in: <a href='#{link}'>#{link}</a>"
-  send_bg_email(to: user['email'], subject: "Login Link to #{$app_name}", html_body: body)
+  send_entry_link_email(user, "#{$app_name} - Sign-In link")
+end
+
+def send_verify_email_email(user)
+  send_entry_link_email(user, "#{$app_name} - Verify Your Email")
+end
+
+def send_welcome_email(user)
+  subj = "Welcome to #{$app_name}!"
+  body = "Welcome to #{$app_name}. We're glad to have you with us! For any question, please contact contact@app_name.com."
+  send_bg_email(to: user['email'], subject: subj, html_body: body)
 end
 
 get '/login' do
@@ -51,7 +58,8 @@ post '/register' do
   else 
     user = create_user(name: name, email: email, hashed_pass: BCrypt::Password.create(password))
     session[:user_id] = user[:_id]     
-    send_welcome_and_verify_email(user)
+    send_welcome_email(user)
+    send_verify_email_email(user)
     log_event('registered')    
     redirect '/me'
   end
@@ -63,7 +71,8 @@ end
 
 get '/token_entry' do
   if (email = $redis.get(params[:token])) && (user = $users.get(email: email))
-    flash.msg = "Welcome back, #{user['name']}!"
+    flash.msg = "Welcome, #{user['name']}!"
+    update_cu({verified_email: true})
     session[:user_id] = user['_id']
     redirect '/'
   else 

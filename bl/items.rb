@@ -65,6 +65,7 @@ get '/cat/:cat' do
 end
 
 get '/items/creation_page' do
+  redirect '/verify_email' unless user_verified_email(cu)
   full_page_card :"items/item_form", locals: {route: '/add_item', title: 'Add Item', creating_new_item: true}
 end
 
