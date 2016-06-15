@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/css/lib/unslider/unslider.dots.css">  
+<link rel="stylesheet" href="/css/lib/unslider/unslider.css">  
+
+<%
+item['imgs'] = item['imgs'] * 5
+%>
+<div class='row'>
+<section class='border1 col-md-4 col-md-offset-4'>
+<h4> Images </h4>
+
+<div class="my-slider" style=''>
+  <ul>
+    <% item['imgs'].each do |img|%>
+    <li> <img src='<%=img["link"]%>' style='height: 500px'> </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class='border1'>
+  <% item['imgs'].each do |img|%>
+    <img src='<%=img["link"]%>' style='height: 100px'>
+  <% end %>
+</div>
+</section>
+</div>

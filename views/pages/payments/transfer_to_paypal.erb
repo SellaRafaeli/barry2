@@ -1,4 +1,8 @@
 <div class='ct'>
   <h1 class='jumbotron'> Transferring you to Paypal... </h1>
-  <p> <a href='<%= url %>'> <%= url %> </a> </p>
+  <p>Or, click here: <a href='<%= url %>'> <%= url %> </a> </p>
 </div>
+
+<script>
+document.location = '<%= url %>'
+</script>

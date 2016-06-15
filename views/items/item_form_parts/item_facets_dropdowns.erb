@@ -1,0 +1,9 @@
+<%
+locals[:item] ||= {}
+%>
+
+<% [['category', ITEM_CATEGORIES], ['subcat', ITEM_SUBCATS], 
+    ['material',ITEM_MATERIALS],['type',ITEM_TYPES]
+    ].each do |list| %>
+  <%= erb :"items/item_form_parts/item_single_dropdown", locals: locals.merge({list: list})%>
+<% end %>      

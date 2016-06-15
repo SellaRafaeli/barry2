@@ -1,19 +1,24 @@
 <%
   imgs = item['imgs'] || []
+  editing_imgs    ||= false
   #hide_images ||= false
 %>
 <div class='form-group'>
       <div class='col-md-12'>
       <% imgs.each do |img| %>
-        <span class='col-md-2 ct'>
+        <span class='col-md-3 ct'>
           <img src="<%=img['link']%>" height=100>
+          <% if editing_imgs %>          
           <div><a href='/items/remove_img?item_id=<%=item['_id']%>&img_to_remove=<%=img['link']%>'> Delete </a></div>
+          <% end %>
         </span>      
       <% end %>
       </div>
 
+    <% if editing_imgs %>
     <div class="form-group">
         <label> Add Images </label>
         <%= erb :"layout/partials/upload_to_imgur_input" %>
     </div>
+    <% end %>
 </div>

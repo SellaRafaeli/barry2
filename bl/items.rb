@@ -8,6 +8,7 @@ ITEM_TYPES      = [:type1, :type2]
 ITEM_MATERIALS  = [:iron, :wood, :bronze]
 ITEM_TECHNOLOGIES = [:laser, :cad]
 
+# item statuses: pending, approved, deleted
 def create_item(user_id, data) 
   data = data.just(SETTABLE_ITEM_FIELDS)
   data[:user_id] = user_id
@@ -22,6 +23,7 @@ end
 
 post '/add_item' do
   data = params.just(SETTABLE_ITEM_FIELDS)
+  data[:status] = :pending
   item = create_item(cuid, data)
   redirect item_link(item)
 end
@@ -39,8 +41,10 @@ post '/edit_item' do
   
   data = params.just(SETTABLE_ITEM_FIELDS)
   data[:title]   ||= 'item'
-  data[:price]   = data[:price].to_i
+  data[:price]   = data[:price].to_i  
   data[:imgs]    = data[:imgs].to_a.map {|link| {link: link}}
+  data[:imgs]    = data[:imgs] + (existing_imgs = Array(item['imgs']))
+
   $items.update_id(item['_id'],data)
   flash.msg = 'Updated item.'
   redirect back
@@ -61,7 +65,7 @@ get '/cat/:cat' do
 end
 
 get '/items/creation_page' do
-  full_page_card :"items/item_form", locals: {route: '/add_item', title: 'Add Item'}
+  full_page_card :"items/item_form", locals: {route: '/add_item', title: 'Add Item', creating_new_item: true}
 end
 
 # must be bottom

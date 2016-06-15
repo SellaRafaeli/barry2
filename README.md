@@ -9,6 +9,9 @@ $ filewatcher '**/*.scss' 'sass $FILENAME > $FILENAME.css; echo "created"-$FILEN
 # Exclude searches:
 -public/css/font*, -public/css/bootstrap_3.3.4.min.css, -public/css/lib*, -public/js/lib/*, -*/node_modules/*, -*/js_dist/*, -*/.sass-cache*
 
+#imgs: http://i.imgur.com/yrRGVNG.jpg, http://i.imgur.com/bmkzLEL.png, http://i.imgur.com/pyFdhW3.jpg/
+#zips: https://cdn.filestackcontent.com/9ItCl9j8QLeHQh2ySdF7
+
 ## Features
 #- homepage
 #- login, logout, forgot password

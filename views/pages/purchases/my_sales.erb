@@ -1,0 +1,10 @@
+<% purchases = $purchases.all(seller_id: cuid) %>
+<% total_rev = purchases.reduce(0) do |result, doc| result+=doc['price'].to_i end rescue 'error' %>
+<h1> My Sales </h1>
+
+<h3> Stuff You Sold </h3>
+<% purchases.each do |purchase| %>
+  <%= erb :"pages/purchases/single_purchase", locals: {purchase: purchase, view_as_seller: true} %>
+<% end %>
+
+<div> Total revenues ever: <%= total_rev %>$. </div>

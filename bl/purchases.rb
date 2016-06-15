@@ -9,3 +9,7 @@ end
 get '/my_purchases' do 
   full_page_card :"pages/purchases/my_purchases"
 end
+
+get '/my_sales' do
+  full_page_card :"pages/purchases/my_sales"
+end

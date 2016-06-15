@@ -26,17 +26,14 @@ x=1
             <div class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input type="text" id="header-search" class="form-control" placeholder="Search">
-                </div>
-                <% if is_admin %>
-                    <div class='form-group'> <a class="admin" href="/admin">Admin</a> </li> </div>
-                <% end %>                                                     
+                </div>                                 
             </div>
             
             <ul class="nav navbar-nav navbar-right header-links">
                 
                 <% if cu %>
-                    <li><a href="/me"><%= user_img_tag(cu, height: 20) %> Me <% if cu['username'] %>(<%= cu['username']%>)<% end %></a></li>                
-                    <li><a href="/inbox"><i class="fa fa-envelope"></i></a></li>                    
+                    <li><a href="/me"><%= user_img_tag(cu, height: 20) %> Me <% if cu['username'] %>(<%= cu['name'] || cu['username']%>)<% end %></a></li>                
+                    <!-- <li><a href="/inbox"><i class="fa fa-envelope"></i></a></li> -->                    
                 <% else %>
                     <li> <a class="nav-link" href="/register">Register</a></li>
                     <li> <a class="nav-link" href="/login">Log In</a></li>
@@ -50,6 +47,11 @@ x=1
                 <% if cu %>
                     <li><a href="/logout">Log Out</a></li>
                 <% end %>
+
+                <% if is_admin %>
+                    <%= erb :"header/admin_dropdown" %>
+                <% end %>                
+              </li>
                 <!-- <li><a href="/about">About</a></li> -->
             </ul>
         </div --><!--/.navbar-collapse -->

@@ -2,14 +2,16 @@
 buyer  = $users.get purchase['user_id']
 seller = $users.get purchase['seller_id']
 item   = $items.get purchase['item_id']
-
+buyer_link = user_link(buyer)
+view_as_seller ||= false
 %>
 
-
 <div class='bg1 m20 p10'>
-  <b> Buyer: </b><span><%= erb :"users/single_user", locals: {user: buyer} %></span>
-  <b> Seller: </b><span><%= erb :"users/single_user", locals: {user: seller} %></span>
-  <b> Item: </b><span><%= erb :"items/single_item", locals: {item: item} %></span>
-
-  <div><%= purchase.to_json %></div>
+  <b> <a href="<%=item_link(item)%>"> <%= item['title']%></a>, 
+  <%=purchase['price']%>$, <%=purchase['created_at']%>, 
+  <% if view_as_seller %>
+  bought by <a href="<%= buyer_link %>"> <%= buyer['username']%></a>.
+  <% else %>
+  Download link: <a href="<%= item['zip_url']%>"><%= item['zip_url']%></a></b>  
+  <% end %>
 </div>

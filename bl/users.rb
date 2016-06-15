@@ -14,7 +14,7 @@ get '/u/:username' do
 end
 
 get '/me' do
-  redirect '/' unless cu
+  redirect '/login' unless cu
   full_page_card(:"users/me")
 end
 

@@ -17,7 +17,7 @@
             <img src="<%=cu['imgs'][0]%>" height=100 display:block>
           </div>
         <% end %>
-        <label> New Image </label>
+        <label> My Profile Pic </label>
         <%= erb :"layout/partials/upload_to_imgur_input" %>
     </div>
     <button type="submit" class="btn btn-default">Submit</button>
@@ -26,12 +26,15 @@
   <hr/>
   <a class='btn btn-default' href='/my_purchases'> My purchases </a>
   <hr/>
-  <%= erb :"items/user_items", locals: {user: cu} %>
-  
-  <hr/>
+  <a class='btn btn-default' href='/my_sales'> My sales </a>
+  <hr/>  
   <a class='btn btn-lg btn-primary' href='/items/creation_page'> Create Item </a>
 </div>
 
 <div class='col-md-4 col-md-offset-2'>
   <%= erb :"users/my_settings", locals: {user: cu} %>
+</div>
+
+<div class='col-md-12'>
+  <%= erb :"items/user_items", locals: {user: cu} %>
 </div>

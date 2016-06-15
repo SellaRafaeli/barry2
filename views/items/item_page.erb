@@ -1,24 +1,24 @@
 <%
   user ||= $users.get(item['user_id'])
 %>
-<h1> <%= item['title'] %> </h1>
-<small>(item page)</small>
+<h1 class='ct'><%= item['title'] %> </h1>
 
-<section>
-  <p><b> <%= item['desc'] %>, <%= item['price'] %>$ </b></p>
+<section class='ct'>  
   <% ['category', 'subcat','type','material','technology'].each do |field| %>
-    <p> <%= field.capitalize%>: <strong><%= item[field] %> </strong></p>
+    <span> <strong><%= item[field] %> </strong> / </span>    
   <% end %>
-    
-  <p> Category: <a class='btn btn-default btn-lg' href='<%=item_cat_link(item) %>'> <%= item['category'] %> </a> </p>
-  <p> Owner: <a class='btn btn-default btn-lg' href='<%=user_link(user)%>'> <%= udn(user) %> </a> </p>
-  <p> Created at: <span> <%= item['created_at'] %> </span> </p>
-  <div> <a class='btn btn-success btn-lg' href='/payment_page?item_id=<%=item['_id']%>'>Buy Item <%= item['price'] %>$</a> </div>
+  <span> <a class='' href='<%=user_link(user)%>'> <%= udn(user) %> </a> </span>
+  <hr/> 
+  <p><b><%= item['desc'] %></b></p>
+  
+  <!-- <p> Created at: <span> <%= item['created_at'] %> </span> </p> -->
+  <div> <a class='btn btn-success btn-lg' href='/payment_page?item_id=<%=item['_id']%>'>Buy Item (<%= item['price'] %>$)</a> </div>
 
-  <div> This item has been purchased <b> <%= $purchases.count(item_id: item['_id']) %></b> times.</div>
-
+  <%= erb :"items/item_page/imgs_gallery", locals: {item: item} %>
+<!--   <div> This item has been purchased <b> <%= $purchases.count(item_id: item['_id']) %></b> times.</div>
+ -->
+  <%#= erb :"items/parts/item_zip_url", locals: {item: item} %>
   <% if item['user_id'] == cuid %>
   <div> <a class='btn btn-danger btn-lg' href='/edit_item?item_id=<%=item['_id']%>'>Edit Item</a> </div>
   <% end %>
-  <img src='<%=random_img_url%>'/>
 </section>

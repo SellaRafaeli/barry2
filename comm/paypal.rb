@@ -29,7 +29,7 @@ def build_paypal_payment_page(payment, item)
     :feesPayer => "EACHRECEIVER",
     #:ipnNotificationUrl => "http://localhost:3000/samples/adaptive_payments/ipn_notify",
     :receiverList => { :receiver => [
-      {:amount => amount, :email => "sella-admin2@gmail.com",}, 
+      {:amount => amount, :email => "sella-admin2@gmail.com"}
   #      {:amount => amount, :email => "sella-admin2@gmail.com", primary: true }, #'primary' when chaining
   #     {:amount => 4.8, :email => "sella-seller@gmail.com" }
     ]},

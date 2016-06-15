@@ -1,3 +1,21 @@
+def send_welcome_and_verify_email(user)
+  token      = user['email'] + "-verify_email-" + guid
+  user_email = user['email']
+  $redis.set(token, user_email)
+  link = "#{$root_url}/verify_email?token=#{token}"
+  body = "Hey, here is your link to verify your email: <a href='#{link}'>#{link}</a>"
+  send_bg_email(to: user['email'], subject: "Verify your email at #{$app_name}", html_body: body)
+end
+
+def send_forgot_password_email(user)
+  token      = user['email'] + "-forgot_password-" + guid
+  user_email = user['email']
+  $redis.setex(token, ONE_HOUR_IN_SECONDS, user_email)
+  link = "#{$root_url}/token_entry?token=#{token}"
+  body = "Hey, here is your link to log back into #{$app_name}. Click here to log in: <a href='#{link}'>#{link}</a>"
+  send_bg_email(to: user['email'], subject: "Login Link to #{$app_name}", html_body: body)
+end
+
 get '/login' do
   full_page_card :"web_auth/login", layout: :layout
 end
@@ -9,7 +27,7 @@ post '/login' do
     if BCrypt::Password.new(user['hashed_pass']) == password      
       session[:user_id] = user[:_id]     
       log_event('logged in')
-      redirect '/' 
+      redirect '/me' 
     else
       flash.msg = 'Wrong password.'
       redirect back
@@ -21,6 +39,7 @@ post '/login' do
 end
 
 get '/register' do
+  redirect '/me' if cu
   full_page_card :"web_auth/register", layout: :layout
 end
 
@@ -28,10 +47,11 @@ post '/register' do
   name, email, password = params[:name], params[:email], params[:password]
   if $users.exists?(email: email)
     flash.msg = 'Email already taken.'
-    redirect back
+    redirect 'back'
   else 
     user = create_user(name: name, email: email, hashed_pass: BCrypt::Password.create(password))
     session[:user_id] = user[:_id]     
+    send_welcome_and_verify_email(user)
     log_event('registered')    
     redirect '/me'
   end
@@ -52,19 +72,19 @@ get '/token_entry' do
   end
 end
 
-def send_forgot_password_email(user)
-  token      = user['email'] + "-" + guid
-  user_email = user['email']
-  $redis.setex(token, ONE_HOUR_IN_SECONDS, user_email)
-  link = "#{$root_url}/token_entry?token=#{token}"
-  body = "Hey, here is your link to log back into #{$app_name}. Click here to log in: <a href='#{link}'>#{link}</a>"
-  bp
-  send_bg_email(to: user['email'], subject: "Login Link to #{$app_name}", html_body: body)
+get '/verify_email' do
+  if (email = $redis.get(params[:token])) && (user = $users.get(email: email))
+    flash.msg = "Welcome back, #{user['name']}!"
+    session[:user_id] = user['_id']
+    redirect '/'
+  else 
+    flash.msg = 'Could not log you in, sorry!'
+    redirect '/'
+  end
 end
 
 post '/forgot_password' do
   user_exists = params[:email] && $users.get(email: params[:email])
-bp
   if user_exists
     msg = 'Check your email for a sign-in link.'
     send_forgot_password_email(user_exists)

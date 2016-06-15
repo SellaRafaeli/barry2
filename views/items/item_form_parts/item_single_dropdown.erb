@@ -1,0 +1,14 @@
+<%
+title = list[0].to_s
+options = list[1]
+submit_on_change ||= false
+require_select ||= false
+select_option = params[title] || item[title] #either in search page and params[:category]=='pop' or in item page and item[:category]=='pop'
+%>
+<label><%= title.capitalize %></label>
+      <select name='<%= title %>' class="form-control" <%= "onchange=$(this).closest('form').submit()" if submit_on_change%> <%='required' if require_select%>>
+          <option value=''>Any</option>
+        <% options.each_with_index do |option, idx| %>
+          <option value='<%=option%>' <%='selected' if option.to_s==select_option%>><%= option.capitalize %></option>
+        <% end %>
+</select>

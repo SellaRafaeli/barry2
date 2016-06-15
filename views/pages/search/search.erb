@@ -11,12 +11,7 @@
       <label>Price below</label>
       <input type="number" class='form-control' name='price' value='<%=params[:price]%>'>
       
-      <% [['category', ITEM_CATEGORIES], ['subcat', ITEM_SUBCATS], 
-          ['material',ITEM_MATERIALS],['type',ITEM_TYPES]
-          ].each do |list| %>
-        <%= erb :"pages/search/dropdown", locals: {list: list}%>
-      <% end %>      
-
+      <%= erb :"items/item_form_parts/item_facets_dropdowns", locals: {submit_on_change: true} %>
       <!-- <p class="help-block">Search for users or posts.</p> -->
     </div>
     <button type="submit" class="btn btn-default">Search</button>
