@@ -17,8 +17,8 @@
 
     <% if editing_imgs %>
     <div class="form-group">
-        <label> Add Images </label>
-        <%= erb :"layout/partials/upload_to_imgur_input" %>
+        <%#= erb :"layout/partials/upload_to_imgur_input" %>
+        <%= erb :"items/item_form_parts/img_video_upload", locals: {item: item} %> 
     </div>
     <% end %>
 </div>

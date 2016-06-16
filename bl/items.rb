@@ -3,7 +3,7 @@ $items = $mongo.collection('items')
 $items.ensure_index('title')
 $items.ensure_index('user_id')
 
-SETTABLE_ITEM_FIELDS = ['title','desc', 'category', 'subcat', 'type', 'material', 'technology', 'price', 'imgs', 'zip_url']
+SETTABLE_ITEM_FIELDS = ['title','desc', 'category', 'subcat', 'type', 'material', 'technology', 'price', 'imgs', 'videos', 'zip_url']
 
 
 ITEM_CATEGORIES = [:pop, :wine_stand]
@@ -22,10 +22,12 @@ def create_item(user_id, data)
   data[:slug]  = get_unique_slug($items,:slug,data[:title])
 
   data[:imgs]  = data[:imgs].to_a.map {|link| {link: link}}
+  data[:videos]  = data[:videos].to_a.map {|link| {link: link}}
   item = $items.add(data)
 end
 
 post '/add_item' do
+  bp
   data = params.just(SETTABLE_ITEM_FIELDS)
   data[:status] = :pending
   item = create_item(cuid, data)
@@ -49,6 +51,9 @@ post '/edit_item' do
   data[:imgs]    = data[:imgs].to_a.map {|link| {link: link}}
   data[:imgs]    = data[:imgs] + (existing_imgs = Array(item['imgs']))
 
+  data[:videos]    = data[:videos].to_a.map {|link| {link: link}}
+  data[:videos]    = data[:videos] + (existing_videos = Array(item['videos']))
+
   $items.update_id(item['_id'],data)
   flash.msg = 'Updated item.'
   redirect back
@@ -69,7 +74,7 @@ get '/cat/:cat' do
 end
 
 get '/items/creation_page' do
-  redirect '/verify_email' unless user_verified_email(cu)
+  #redirect '/verify_email' unless user_verified_email(cu)
   full_page_card :"items/item_form", locals: {route: '/add_item', title: 'Add Item', creating_new_item: true}
 end
 

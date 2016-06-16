@@ -5,6 +5,7 @@
 
 <script>
 function validateSubmitItemForm(){
+  return true
   if (!$(".img_input").size())    { alert('You must add an image.'); return false; }
   if (!$("#zip_url_input")[0].value) { alert('You must add a zip file.'); return false; }  
   return true;
@@ -22,7 +23,7 @@ function validateSubmitItemForm(){
     <% [:title, :desc].each do |field| %>
       <div class="form-group">
         <label for="item-form-<%=field%>"><%=field.capitalize%></label>
-        <input type="text" class="form-control" id="item-form-<%=field%>" placeholder="<%=field%>" name=<%=field%> value='<%=item[field]%>' required>
+        <input type="text" class="form-control" id="item-form-<%=field%>" placeholder="<%=field%>" name=<%=field%> value='<%=item[field]%>' zrequired>
       </div>
     <% end %>
     
@@ -30,7 +31,7 @@ function validateSubmitItemForm(){
     <% end %>
     <%= erb :"items/item_form_parts/imgs_area", locals: {item: item, editing_imgs: true} %>
     
-    <%= erb :"items/item_form_parts/file_upload", locals: {item: item} %> 
+    <%= erb :"items/item_form_parts/zip_upload", locals: {item: item} %> 
     <hr/>
     <button type="submit" class="btn btn-default btn-primary btn-block" onclick="return validateSubmitItemForm()">Submit</button>
 </form>
