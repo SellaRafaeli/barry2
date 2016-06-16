@@ -31,5 +31,5 @@ function appendImgToFileInput(input) {
 <%# when file is chosen, it is uploaded to imgur, an input with the link is appended, and the selection is cleared. %>
 <div class='uploadFileContainer'>
   <span class='btn btn-primary uploadingToggle noDisplay'><i class='fa fa-spinner faa-spin animated'></i> Uploading...</span>  
-  <label class='btn btn-primary uploadingToggle'> <i class="fa fa-folder-open"></i> Choose   Image <input accept='image/*' onchange=appendImgToFileInput(this) class='form-control' type='file' style='display: none'/></label>
+  <label class='btn btn-primary uploadingToggle'> <i class="fa fa-folder-open"></i> Choose   Image <input accept='video/*,image/*' onchange=appendImgToFileInput(this) class='form-control' type='file' style='display: none'/></label>
 </div>

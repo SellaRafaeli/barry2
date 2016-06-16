@@ -1,5 +1,8 @@
+
+<div class='col-md-12'>
 <h3> My Items </h3>  
   <% items = $items.all(user_id: user['_id']) %>
   <% items.each do |item| %>
     <%= erb :"items/single_item", locals: {item: item} %>
   <% end %>
+</div>

@@ -10,3 +10,7 @@ end
 get '/page' do
   to_page(:"other/about")
 end
+
+get '/faq' do
+  full_page_card(:"pages/static/faq")
+end

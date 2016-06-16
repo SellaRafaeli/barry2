@@ -1,16 +1,20 @@
 <h1> User page </h1>
 
 <%#= erb :"layout/partials/callout" %>
+<div class='row'>
 <section class='col-md-6'>
   <%= user_img_tag(user) %>
-  <p class='bg-primary p15'><%= user['name']%></p>
+  <p class='bg-primary p15'><%= user['name']%> <% if is_admin %>
+  <a class='btn btn-warning' href='/admin/login_as?user_id=<%=user['_id']%>'>Admin Login As This User</a>
+  <% end %></p>
   <p class='bg-primary p15'><%= user['email']%></p>
   <p class='bg-primary p15'><%= user['username']%></p>
-  <p class='bg-primary p15'><%= user['_id']%></p>
-  <% if is_admin %>
-  <a class='btn btn-danger btn-lg' href='/admin/login_as?user_id=<%=user['_id']%>'>Login As</a>
-  <% end %>
+  <p class='bg-primary p15'><%= user['_id']%></p>  
   
-  <%= erb :"items/user_items", locals: {user: user} %>
   <%#= erb :"pages/convos/send_msg_form", locals: {user: user} %>
 </section>
+</div>
+
+<div class='row'>
+  <%= erb :"items/user_items", locals: {user: user} %>
+</div>
