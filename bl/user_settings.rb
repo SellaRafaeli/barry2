@@ -1,5 +1,7 @@
 $user_settings = $mongo.collection('user_settings')
 
+$user_settings.ensure_index('user_id')
+
 post '/update_my_settings' do
   data = params.just(USFN)
   data[:user_id] = cuid
