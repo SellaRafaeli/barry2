@@ -1,5 +1,7 @@
 $errors = $mongo.collection('errors')
 
+$errors.ensure_index('created_at', expire_after: ONE_HOUR_IN_SECONDS)
+
 module Helpers
   def log_e(err, data = {})  
     err = {msg: err.to_s, backtrace: err.backtrace.to_a.slice(0,4)} if err.is_a? Exception

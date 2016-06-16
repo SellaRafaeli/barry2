@@ -16,6 +16,7 @@
   <!-- <p> Created at: <span> <%= item['created_at'] %> </span> </p> -->
   <div> <a class='btn btn-success btn-lg' href='/payment_page?item_id=<%=item['_id']%>'>Buy Item (<%= item['price'] %>$)</a> </div>
 
+  <%= erb :"layout/partials/sharing_btns" %>
   <%= erb :"items/item_page/imgs_gallery", locals: {item: item} %>
 <!--   <div> This item has been purchased <b> <%= $purchases.count(item_id: item['_id']) %></b> times.</div>
  -->

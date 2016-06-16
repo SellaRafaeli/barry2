@@ -72,7 +72,6 @@ end
 get '/token_entry' do
   if (email = $redis.get(params[:token])) && (user = $users.get(email: email))
     flash.msg = "Welcome, #{user['name']}!"
-    bp
     update_cu({verified_email: true})
     session[:user_id] = user['_id']
     redirect '/'

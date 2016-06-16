@@ -15,6 +15,7 @@ Items
  - category
  - price
  - imgs: [{link:}, {link: }]
+ - status (pending, approved, deleted)
 
 Msgs
  - sender_id

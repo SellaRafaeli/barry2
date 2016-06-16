@@ -29,7 +29,7 @@ def halt_back(msg = 'Sorry!')
   redirect back
 end
 
-def require_user(msg = 'You need to sign in first.')
+def require_user(msg = 'You need to sign in first. Click here to <a href="/login">log in</a> or <a href="/register">register</a>.')
   halt_back(msg) unless cu
 end
 

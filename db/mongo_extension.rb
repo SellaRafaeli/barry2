@@ -56,7 +56,7 @@ class Mongo::Collection
   end
 
   def simple_add(doc)
-    doc[:_id]      ||= nice_id
+    doc[:_id]        = nice_id
     doc[:created_at] = Time.now
     self.insert_one(doc)
     doc.hwia
@@ -67,7 +67,8 @@ class Mongo::Collection
     simple_add(doc)
   rescue Mongo::Error::OperationFailure => e
     puts "oops on #{doc[:_id]}".red
-    return simple_add(doc) if e.include?('duplicate key error')
+    bp
+    return simple_add(doc) if e.to_s.include?('duplicate key error')
     raise e
   end
 

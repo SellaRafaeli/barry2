@@ -23,13 +23,12 @@ def create_item(user_id, data)
 
   data[:imgs]  = data[:imgs].to_a.map {|link| {link: link}}
   data[:videos]  = data[:videos].to_a.map {|link| {link: link}}
+  data[:status]  = :pending
   item = $items.add(data)
 end
 
 post '/add_item' do
-  bp
   data = params.just(SETTABLE_ITEM_FIELDS)
-  data[:status] = :pending
   item = create_item(cuid, data)
   redirect item_link(item)
 end

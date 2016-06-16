@@ -10,6 +10,7 @@ def create_payment(params)
 end
 
 get '/payment_page' do  
+  require_user
   item    = $items.get(params[:item_id]) || halt_back('Bad item.')
   seller  = $users.get(item['user_id']) || halt_back('Bad seller.')
   payment = create_payment({item_id: item['_id'], seller_id: seller['_id'], user_id: cuid, price: item['price'], item_title: item['title']})
