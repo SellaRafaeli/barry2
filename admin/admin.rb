@@ -36,7 +36,7 @@ get '/admin/login_as' do
   redirect back
 end
 
-post '/admin/create_item' do
+post '/admin/create_item' do #from admin dashboard tables
   require_fields(['coll'])
   coll = $mongo.collection(params[:coll])
   fields = mongo_coll_keys(coll)

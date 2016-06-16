@@ -1,0 +1,32 @@
+<style type="text/css">
+
+.sharing_btns {
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 10px;
+} 
+.sharing_btns img {
+width: 35px;
+padding: 5px;
+border: 0;
+box-shadow: 0;
+display: inline;
+}
+ 
+</style>
+<% share_text = 'Sharing this!' %>
+<article class='sharing_btns col-md-4 col-md-offset-4'>
+  <div class='sharing_btns_contents centerText'>
+  <div style='margin:10px 0'>
+    <!-- <a href="<%=link%>"><%= link %></a> -->
+    <a href="mailto:?Subject=<%='Sharing from' + $app_name%>&amp;Body=<%=share_text%>">
+        <img src="https://simplesharebuttons.com/images/somacro/email.png" alt="Email" /></a>
+    <a href="http://www.facebook.com/sharer.php?u=<%=get_fullpath%>" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" /></a>
+    <a href="https://twitter.com/share?text=<%=share_text%>&url=<%=get_fullpath%>" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" /></a>
+     <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<%=get_fullpath%>" target="_blank">
+        <img src="https://simplesharebuttons.com/images/somacro/linkedin.png" alt="LinkedIn" /></a>
+  </div>
+  </div> 
+</article>

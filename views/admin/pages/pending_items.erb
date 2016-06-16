@@ -1,0 +1,15 @@
+<%
+  pending_items = $items.all(status: ITEM_PENDING_STATUS).to_a
+%>
+
+<h1> Pending Items </h1>
+
+<ul>
+<% pending_items.each do |item| %>
+<li> 
+  <a href='<%= item_link(item) %>'><%=item_link(item) %></a> 
+  <a href='/admin/approve_pending_item?item_id=<%=item['_id']%>' class='btn btn-success'> Approve </a>
+  <a href='/admin/delete_pending_item?item_id=<%=item['_id']%>' class='btn btn-danger'> Delete </a>
+</li>
+<% end %>
+</ul>

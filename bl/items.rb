@@ -12,6 +12,9 @@ ITEM_TYPES      = [:type1, :type2]
 ITEM_MATERIALS  = [:iron, :wood, :bronze]
 ITEM_TECHNOLOGIES = [:laser, :cad]
 
+ITEM_APPROVED_STATUS, ITEM_PENDING_STATUS, ITEM_DELETED_STATUS = :approved, :pending, :deleted
+
+
 # item statuses: pending, approved, deleted
 def create_item(user_id, data) 
   data = data.just(SETTABLE_ITEM_FIELDS)

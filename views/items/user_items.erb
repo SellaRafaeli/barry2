@@ -1,7 +1,12 @@
-
+<%
+  if user['_id'] == cuid
+    items = $items.all(user_id: user['_id']) 
+  else 
+    items = $items.all(user_id: user['_id'], status: ITEM_APPROVED_STATUS) 
+  end
+%>
 <div class='col-md-12'>
 <h3> My Items </h3>  
-  <% items = $items.all(user_id: user['_id']) %>
   <% items.each do |item| %>
     <%= erb :"items/single_item", locals: {item: item} %>
   <% end %>

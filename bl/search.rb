@@ -6,6 +6,7 @@ end
 
 def get_search_items(crit)
   data = {}
+  data[:status]= ITEM_APPROVED_STATUS
   data[:title] = like_regex(crit[:title]) if crit[:title].present?
   data[:desc]  = like_regex(crit[:desc])  if crit[:desc].present?
   data[:price] = {"$lt": crit[:price]} if crit[:price].present?

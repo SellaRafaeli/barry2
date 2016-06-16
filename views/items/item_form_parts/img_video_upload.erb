@@ -1,0 +1,26 @@
+<label> Add Image or Video </label><br/>
+
+<script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
+</script>
+
+<span id='img_inputs_container'></span>
+
+<div>
+<input id='fileLoaderImg' type="filepicker" data-fp-apikey="<%= ENV['FILEPICKER_API_KEY'] %>" data-fp-mimetypes="image/*, video/*" data-fp-container="modal" data-fp-services="COMPUTER" onchange="appendImgInput(event)">
+</div>
+<script>
+function appendImgInput(event) {  
+  
+  var isVideo = event.fpfile.mimetype.indexOf('video') > -1;
+  if (isVideo) {    
+    var name = 'videos'
+    var displayer = '<video height=100 style="vertical-align:middle" controls><source src='+event.fpfile.url+'/></video>';
+  } else { //img
+    var name = 'imgs'
+    var displayer = '<img height=100 style="vertical-align:middle" src='+event.fpfile.url+'/>';
+  }
+  var input   = '<input type="hidden" class="img_input" name="'+name+'[]" value="'+event.fpfile.url+'">'
+  $("#img_inputs_container").after(input + displayer);
+  //$("#zip_url_display").text(event.fpfile.filename).show();
+}
+</script>
