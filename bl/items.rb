@@ -1,6 +1,10 @@
 $items = $mongo.collection('items')
 
+$items.ensure_index('title')
+$items.ensure_index('user_id')
+
 SETTABLE_ITEM_FIELDS = ['title','desc', 'category', 'subcat', 'type', 'material', 'technology', 'price', 'imgs', 'zip_url']
+
 
 ITEM_CATEGORIES = [:pop, :wine_stand]
 ITEM_SUBCATS    = [:subcat1, :subcat2]

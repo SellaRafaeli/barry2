@@ -96,7 +96,13 @@ class Mongo::Collection
   def fields
     mongo_coll_keys(self)
   end  
-end #end Mongo class 
+
+  #https://docs.mongodb.com/ecosystem/tutorial/ruby-driver-tutorial/#indexing
+  def ensure_index(field, opts = {}) 
+    indexes.create_one({field => 1}, opts)
+  end
+
+end #end Mongo Collection class 
 
 
 get '/db/mongo_extension' do

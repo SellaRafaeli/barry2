@@ -1,5 +1,9 @@
 $payments = $mongo.collection('payments')
 
+$payments.ensure_indexes('user_id')
+$payments.ensure_indexes('seller_id')
+$payments.ensure_indexes('item_id')
+
 def create_payment(params)
   data = params.just(:user_id, :seller_id, :item_id, :price, :item_title)
   $payments.add(data)

@@ -1,5 +1,8 @@
 $msgs = $mongo.collection('msgs')
 
+$msgs.ensure_index('sender_id')
+$msgs.ensure_index('receiver_id')
+
 def add_msg(receiver_id, text)
   $msgs.add({sender_id: cuid, receiver_id: receiver_id, text: text.to_s})
 end

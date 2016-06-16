@@ -33,6 +33,20 @@ def time(&block) #to call: time { get '/u/ann-oates' }
   before = Time.now; yield; puts "Took: #{Time.now-before}"
 end
 
+class String
+  def trunc(length, options = {}) #truncate, trim
+    text = self.dup.to_s
+    options[:omission] ||= "..."
+
+    length_with_room_for_omission = length - options[:omission].mb_chars.length
+    chars = text.mb_chars
+    stop = options[:separator] ?
+      (chars.rindex(options[:separator].mb_chars, length_with_room_for_omission) || length_with_room_for_omission) : length_with_room_for_omission
+
+    (chars.length > length ? chars[0...stop] + options[:omission] : text).to_s
+  end
+end
+
 def to_numeric(n)
   return n.to_s.to_i if n.to_s == n.to_s.to_i.to_s  
   return n.to_s.to_f if n.to_s == n.to_s.to_f.to_s  

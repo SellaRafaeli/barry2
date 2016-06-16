@@ -5,7 +5,7 @@ def send_entry_link_email(user, subj = nil)
   
   subj ||= "Login Link to #{$app_name}"
   link = "#{$root_url}/token_entry?token=#{token}"  
-  body = "Hey, here is your link to log into #{$app_name}. Click here to verify your email and log in: <a href='#{link}'>#{link}</a>"
+  body = "Hey, here is your link to log into #{$app_name}.<br/><br/>Click here to verify your email and log in:<br/><a href='#{link}'>#{link}</a>"
   send_bg_email(to: user['email'], subject: subj, html_body: body)
 end
 
@@ -72,6 +72,7 @@ end
 get '/token_entry' do
   if (email = $redis.get(params[:token])) && (user = $users.get(email: email))
     flash.msg = "Welcome, #{user['name']}!"
+    bp
     update_cu({verified_email: true})
     session[:user_id] = user['_id']
     redirect '/'

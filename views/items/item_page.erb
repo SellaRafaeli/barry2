@@ -1,7 +1,9 @@
 <%
   user ||= $users.get(item['user_id'])
 %>
-<h1 class='ct'><%= item['title'] %> </h1>
+<h1 class='ct'><%= item['title'] %> <% if item['user_id'] == cuid %>
+   <a class='btn btn-warning btn' href='/edit_item?item_id=<%=item['_id']%>'>Edit</a>
+  <% end %> </h1>
 
 <section class='ct'>  
   <% ['category', 'subcat','type','material','technology'].each do |field| %>
@@ -17,8 +19,5 @@
   <%= erb :"items/item_page/imgs_gallery", locals: {item: item} %>
 <!--   <div> This item has been purchased <b> <%= $purchases.count(item_id: item['_id']) %></b> times.</div>
  -->
-  <%#= erb :"items/parts/item_zip_url", locals: {item: item} %>
-  <% if item['user_id'] == cuid %>
-  <div> <a class='btn btn-danger btn-lg' href='/edit_item?item_id=<%=item['_id']%>'>Edit Item</a> </div>
-  <% end %>
+  <%#= erb :"items/parts/item_zip_url", locals: {item: item} %>  
 </section>

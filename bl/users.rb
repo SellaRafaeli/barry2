@@ -1,5 +1,9 @@
 $users = $mongo.collection('users')
 
+$users.ensure_index('email')
+$users.ensure_index('name')
+$users.ensure_index('username')
+
 SETTABLE_USER_FIELDS = ['email','name','username','imgs']
 
 def create_user(data)
@@ -8,7 +12,7 @@ def create_user(data)
   $users.add(data)
 end
 
-def update_cu(coll, data)
+def update_cu(data)
   $users.update_id(cuid,data) if cu
 end
 
