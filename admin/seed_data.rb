@@ -23,7 +23,15 @@ def create_user_item(user)
   title = [Faker::Commerce.product_name, "#{Faker::Hacker.adjective.capitalize} #{Faker::Hacker.noun.capitalize}"].sample
   desc = [Faker::Company.catch_phrase.titleize, Faker::Company.bs.titleize].sample
   price = rand(10)*rand(30)
-  create_item(user['_id'], {title: title, desc: desc, category: ITEM_CATEGORIES.sample, subcat: ITEM_SUBCATS.sample, type: ITEM_TYPES.sample, material: ITEM_MATERIALS.sample, technology: ITEM_TECHNOLOGIES.sample, price: price, imgs: seed_imgs, videos: seed_videos, status: [ITEM_APPROVED_STATUS,ITEM_DELETED_STATUS,ITEM_PENDING_STATUS].sample, zip_url: seed_zip_url})
+  create_item(user['_id'], 
+    {title: title, desc: desc, 
+    category: ITEM_CATEGORIES.first[:id], 
+    subcat: ITEM_SUBCATS.sample[:id], 
+    types: ITEM_TYPES.sample[:id],
+    divisions: ITEM_DIVISIONS.sample[:id],
+    materials: ITEM_MATERIALS.sample[:id],
+    technologies: ITEM_TECHNOLOGIES.sample[:id], 
+    price: price, imgs: seed_imgs, videos: seed_videos, status: [ITEM_APPROVED_STATUS,ITEM_DELETED_STATUS,ITEM_PENDING_STATUS].sample, zip_url: seed_zip_url})
 end
 
 def create_seed_items

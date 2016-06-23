@@ -6,7 +6,7 @@
   <% end %> </h1>
 
 <section class='ct'>  
-  <% ['category', 'subcat','type','material','technology'].each do |field| %>
+  <% ['category', 'subcat','types','divisions','materials','technologies'].each do |field| %>
     <span> <strong><%= item[field] %> </strong> / </span>    
   <% end %>
   <span> <a class='' href='<%=user_link(user)%>'> <%= udn(user) %> </a> </span>

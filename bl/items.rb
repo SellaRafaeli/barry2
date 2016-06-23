@@ -3,17 +3,18 @@ $items = $mongo.collection('items')
 $items.ensure_index('title')
 $items.ensure_index('user_id')
 
-SETTABLE_ITEM_FIELDS = ['title','desc', 'category', 'subcat', 'type', 'material', 'technology', 'price', 'imgs', 'videos', 'zip_url']
+SETTABLE_ITEM_FIELDS = ['title','desc', 'category', 'subcat', 'types', 'divisions', 'materials', 'technologies', 'price', 'imgs', 'videos', 'zip_url']
 
-
-ITEM_CATEGORIES = [:pop, :wine_stand]
-ITEM_SUBCATS    = [:subcat1, :subcat2]
-ITEM_TYPES      = [:type1, :type2]
-ITEM_MATERIALS  = [:iron, :wood, :bronze]
-ITEM_TECHNOLOGIES = [:laser, :cad]
+ITEM_LIST_OF_LISTS = [
+  {id: 'category',     items: ITEM_CATEGORIES, title: 'Category',},
+  {id: 'subcat',       items: ITEM_SUBCATS, title: 'SubCategory'},
+  {id: 'types',        items: ITEM_TYPES, title: 'Type'},
+  {id: 'divisions',    items: ITEM_DIVISIONS, title: 'Division'},
+  {id: 'materials',   items: ITEM_MATERIALS, title: 'Material'},
+  {id: 'technologies', items: ITEM_TECHNOLOGIES, title: 'Technology'}
+]
 
 ITEM_APPROVED_STATUS, ITEM_PENDING_STATUS, ITEM_DELETED_STATUS = :approved, :pending, :deleted
-
 
 # item statuses: pending, approved, deleted
 def create_item(user_id, data) 

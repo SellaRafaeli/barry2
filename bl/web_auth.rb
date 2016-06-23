@@ -54,7 +54,7 @@ post '/register' do
   name, email, password = params[:name], params[:email], params[:password]
   if $users.exists?(email: email)
     flash.msg = 'Email already taken.'
-    redirect 'back'
+    redirect back
   else 
     user = create_user(name: name, email: email, hashed_pass: BCrypt::Password.create(password))
     session[:user_id] = user[:_id]     

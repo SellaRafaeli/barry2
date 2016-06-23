@@ -6,18 +6,18 @@ end
 
 def get_search_items(crit)
   data = {}
-  data[:status]= ITEM_APPROVED_STATUS
+  #data[:status]= ITEM_APPROVED_STATUS
   data[:title] = like_regex(crit[:title]) if crit[:title].present?
   data[:desc]  = like_regex(crit[:desc])  if crit[:desc].present?
   data[:price] = {"$lt": crit[:price]} if crit[:price].present?
-  [:category,:subcat,:type,:material].each { |field|
+  fields       = ITEM_LIST_OF_LISTS.mapo(:id)
+  fields.each { |field|
     data[field] = crit[field] if crit[field].present?
   }
-
   items = $items.get_many(data, limit: 20).sort_by{|i| i['price']}
 end
 
-get '/search_page' do  
+get '/search_page' do
   results = get_search_items(params)
   full_page_card(:"pages/search/search", layout: :layout, locals: {results: results})
 end

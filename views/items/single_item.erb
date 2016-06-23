@@ -3,7 +3,7 @@
   <h4><%= (item['title']).trunc(50)%> (<%=item['status']%>)</h4> 
   <img class='center' src='<%=item['imgs'].first['link'] rescue nil%>' style='height: 100px'>
   <div>
-  <%=item['category']%> / <%=item['subcat']%> / <%=item['type']%> / 
+  <%=item['subcat']%> / <%=item['types']%> / <%=item['divisions']%> / <%=item['materials'] %> / <%=item['technologies'] %>
 
   <b><%=item['price']%>$</b>
   </div>

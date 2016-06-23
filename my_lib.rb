@@ -16,6 +16,11 @@ class Hash
 end
 
 class Array
+  def selecto(key_val)
+    key, val = key_val.keys.first, key_val.values.first
+    select {|i| i.hwia[key] == val }
+  end
+
   def mapo(field)
     self.map {|el| el[field]}
   end
